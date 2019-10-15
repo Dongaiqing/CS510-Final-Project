@@ -6,9 +6,9 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
+    margin: 0;
     flex-direction: column;
 }
 
@@ -30,11 +30,12 @@ body {
     flex-grow: 10;
     box-sizing:border-box;
     font-size: 30px;
+    margin: 0;
     padding-left: 15px;
 }
 
 .input-box:focus {
-    outline-color: rgb(70, 153, 254);
+    outline: 1px solid rgb(103, 171, 255);
 }
 
 .search-button {
@@ -47,6 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     outline: none;
+    border: none;
     transition: .3s;
 }
 
