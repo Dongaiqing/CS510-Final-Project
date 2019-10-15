@@ -4,6 +4,7 @@ html {
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     width: 100%;
     height: 100%;
     display: flex;
@@ -13,8 +14,8 @@ body {
 
 .title {
     font-size: 70px;
-    font-family: 'Roboto', sans-serif;
     color: rgb(118, 118, 118);
+    margin: 70px 50px 70px 50px;
 }
 
 .input-wrapper {
@@ -58,4 +59,58 @@ body {
 .search-button:hover {
     transition: .3s;
     background-color: rgb(38, 123, 227);
+}
+
+.no-result-wrapper {
+    width: 70%;
+    height: 100px;
+    margin: 20px 0 20px 0;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.no-result-prompt {
+    color: rgb(118, 118, 118);
+    font-size: 25px;
+}
+
+.results-wrapper {
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+.single-result-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.result-title {
+    font-size: 30px;
+    text-decoration: none;
+    color: rgb(54, 137, 238);
+    transition: .2s;
+}
+
+.result-title:hover {
+    color: rgb(31, 92, 167);
+    transition: .2s;
+}
+
+.result-authors {
+    font-size: 25px;
+    margin: 5px 0 5px 0;
+    color: rgb(86, 148, 103)
+}
+
+.result-abstract {
+    font-size: 22px;
+    margin: 5px 0 5px 0;
 }
