@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Heebo', sans-serif;
     width: 100%;
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@ body {
 .title {
     font-size: 70px;
     color: rgb(118, 118, 118);
-    margin: 70px 50px 70px 50px;
+    margin: 60px 50px 60px 50px;
 }
 
 .input-wrapper {
@@ -29,9 +29,13 @@ body {
 .input-box {
     flex-grow: 10;
     box-sizing:border-box;
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
     padding-left: 15px;
+}
+
+.input-box::placeholder {
+    color: rgb(203, 203, 203);
 }
 
 .input-box:focus {
@@ -65,16 +69,16 @@ body {
 
 .no-result-wrapper {
     width: 70%;
-    height: 100px;
-    margin: 20px 0 20px 0;
+    margin: 60px 0 60px 0;
     display: flex;
     align-items: center;
     display: none;
 }
 
 .no-result-prompt {
-    color: rgb(118, 118, 118);
+    color: rgb(164, 164, 164);
     font-size: 25px;
+    margin: 0px;
 }
 
 .results-wrapper {
@@ -91,18 +95,19 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 .result-title {
     font-size: 30px;
     text-decoration: none;
-    color: rgb(54, 137, 238);
+    color: rgb(63, 131, 215);
     transition: .2s;
 }
 
 .result-title:hover {
     color: rgb(31, 92, 167);
+    text-decoration: underline;
     transition: .2s;
 }
 
@@ -115,4 +120,9 @@ body {
 .result-abstract {
     font-size: 22px;
     margin: 5px 0 5px 0;
+}
+
+.emphasis {
+    display: inline;
+    color: rgb(210, 86, 86);
 }
