@@ -34,11 +34,11 @@ class UnigramLM:
             self.str_list[i], self.title_list[i], self.abstract_list[i] = parseXML(self.data_dir + xml_list[i])
     
     def convert_all_to_unigram(self):     
+        '''
+        convert all document string to unigram counter
+        '''
         for i in range(self.data_size):
             self.unigram_list[i] = self.convert_to_unigram(self.str_list[i], i)
-
-    def get_str_list(self):
-        return self.str_list
     
     def get_Counter(self, idx):
         assert(idx < self.data_size)
@@ -54,6 +54,9 @@ class UnigramLM:
         return counter
     
     def query(self, query, k):
+        '''
+        return a list of [title, abstract]
+        '''
         score_list = [0] * self.data_size
         for i in range(self.data_size):
             score_list[i] = self.compute_score(query, i)
