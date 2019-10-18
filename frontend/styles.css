@@ -1,6 +1,7 @@
-html {
-    margin: 0;
-    padding: 0;
+/* fix for checkbox not working properly in Safari */
+@-webkit-keyframes bugfix { 
+  from { padding: 0; } 
+  to { padding: 0; } 
 }
 
 body {
@@ -10,6 +11,7 @@ body {
     align-items: center;
     margin: 0;
     flex-direction: column;
+    -webkit-animation: bugfix infinite 1s;
 }
 
 .title {
@@ -92,10 +94,59 @@ body {
 
 .single-result-wrapper {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.result-contents-wrapper {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 60px;
+}
+
+.relevance-control-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: rgb(215, 215, 215);;
+    margin-right: 40px;
+    height: 100%;
+}
+
+.radio-label {
+    transition: .2s;
+    height: auto;
+    display: contents;
+}
+
+.radio-label:hover {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.radio-label-rel:hover {
+    color: rgb(151, 196, 151);
+}
+
+.radio-label-irrel:hover {
+    color: rgb(210, 131, 131);
+}
+
+.relevance-control-wrapper input {
+    display: contents;
+}
+
+.relevance-radio:checked + .radio-label-rel {
+    color: rgb(151, 196, 151);
+}
+
+.relevance-radio:checked + .radio-label-irrel {
+    color: rgb(210, 131, 131);
 }
 
 .result-title {
