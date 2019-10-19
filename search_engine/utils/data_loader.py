@@ -7,16 +7,21 @@ import requests
 URL = "https://docs.google.com/uc?export=download"
 
 class DataLoader():
+    def __init__(self,
+                 drive_id="10UBBDPJ37u6JvVPMK1OkGfEWGM-GwEOz",
+                 data_path="/../data",
+                 destination_filename='grobid_processed.tar.gz'):
+        self.drive_id = drive_id
+        self.data_path = data_path
+        self.destination_filename = destination_filename
+
     # returns number of data files in data path
     # if no files exist in that path, download and extract the grobid dataset to that directory
-    def load_data(self,
-                  drive_id="10UBBDPJ37u6JvVPMK1OkGfEWGM-GwEOz",
-                  data_path="/../data",
-                  destination_filename='grobid_processed.tar.gz'):
+    def load_data(self):
         # init variables, ensure data path exists
-        data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+data_path)
-        drive_data = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+data_path+'/'+destination_filename)
-        destination_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+data_path+'/'+destination_filename.split('.')[0])
+        data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path)
+        drive_data = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename)
+        destination_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename.split('.')[0])
         if not exists(data_dir):
             mkdir(data_dir)
         if not exists(destination_dir):
@@ -32,8 +37,8 @@ class DataLoader():
         if exists(drive_data):
             print("tgz already downloaded")
         else:
-            print("downloading tgz from Drive link with id=", drive_id)
-            self.download_file_from_google_drive(drive_id, drive_data)
+            print("downloading tgz from Drive link with id=", self.drive_id)
+            self.download_file_from_google_drive(self.drive_id, drive_data)
 
         # extracts files from tgz in place
         print("extracting files from", drive_data)

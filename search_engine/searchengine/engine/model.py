@@ -85,7 +85,8 @@ class UnigramLM:
 
 def main():
     loader = DataLoader()
-    loader.load_data()
+    num_files = loader.load_data()
+
     LM = UnigramLM(100, 0.1)
     counter = LM.get_Counter(11)
     print(LM.query("translation", 10))
