@@ -1,6 +1,6 @@
 from xml.dom import minidom
-import os
 from os.path import dirname, abspath
+import os_directory
 
 def parseXML(xmlfile):
     '''
@@ -16,11 +16,6 @@ def parseXML(xmlfile):
 
     return " ".join(f_list), title, abstract
 
-
-dir_path = dirname(dirname(abspath(__file__)))
-if os.name == 'nt':
-    dir_path += "\\"
-else:
-    dir_path += "/grobid_processed/A00-1012.tei.xml"
+dir_path = os_directory.safe_dir(dirname(dirname(abspath(__file__))) + "/../../data/grobid_processed/A00-1012.tei.xml")
 
 parseXML(dir_path)

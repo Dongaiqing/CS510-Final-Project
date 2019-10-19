@@ -5,6 +5,8 @@ from collections import Counter
 from os import listdir
 from os.path import dirname, abspath
 from parse_xml import parseXML
+from utils import os_directory
+from utils.data_loader import DataLoader
 import string
 import math
 import numpy as np
@@ -12,7 +14,8 @@ import numpy as np
 class UnigramLM:
     def __init__(self, data_size, lam):
         # lam stands for lamda
-        self.data_dir = dirname(dirname(abspath(__file__))) + "/grobid_processed/"
+        self.data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__))) + "/../../data/grobid_processed/")
+        print(self.data_dir)
         self.data_size = data_size
         self.total_words = 0
         self.lam = lam
@@ -73,6 +76,7 @@ class UnigramLM:
         '''
         words = query.split(" ")
         score = 0
+        # scores can be proportional values: log used to prevent underflow
         for w in words:
             if self.unigram_list[doc_idx][w] != 0:
                 n = 1 + (self.lam / (1 - self.lam)) * (self.unigram_list[doc_idx][w] / (self.doc_length[doc_idx] * (self.reference_counter[w] / self.total_words)))
@@ -80,6 +84,8 @@ class UnigramLM:
         return score
 
 def main():
+    loader = DataLoader()
+    loader.load_data()
     LM = UnigramLM(100, 0.1)
     counter = LM.get_Counter(11)
     print(LM.query("translation", 10))
