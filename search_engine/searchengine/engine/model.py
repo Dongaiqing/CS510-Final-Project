@@ -12,10 +12,9 @@ import math
 import numpy as np
 
 class UnigramLM:
-    def __init__(self, data_size, lam):
+    def __init__(self, data_dir, data_size, lam):
         # lam stands for lamda
-        self.data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__))) + "/../../data/grobid_processed/")
-        print(self.data_dir)
+        self.data_dir = data_dir
         self.data_size = data_size
         self.total_words = 0
         self.lam = lam
@@ -87,7 +86,9 @@ def main():
     loader = DataLoader()
     num_files = loader.load_data()
 
-    LM = UnigramLM(100, 0.1)
+    # use xml parser here, pass data into UnigramLM?
+
+    LM = UnigramLM(loader.destination_dir, num_files, 0.1)
     counter = LM.get_Counter(11)
     print(LM.query("translation", 10))
 

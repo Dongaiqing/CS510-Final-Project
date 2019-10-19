@@ -15,36 +15,38 @@ class DataLoader():
         self.data_path = data_path
         self.destination_filename = destination_filename
 
+        self.data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path)
+        self.drive_data = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename)
+        self.destination_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename.split('.')[0]+'/')
+
     # returns number of data files in data path
     # if no files exist in that path, download and extract the grobid dataset to that directory
-    def load_data(self):
-        # init variables, ensure data path exists
-        data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path)
-        drive_data = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename)
-        destination_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path+'/'+self.destination_filename.split('.')[0])
-        if not exists(data_dir):
-            mkdir(data_dir)
-        if not exists(destination_dir):
-            mkdir(destination_dir)
+    def load_data(self, test=False):
+        if not exists(self.data_dir):
+            mkdir(self.data_dir)
+        if not exists(self.destination_dir):
+            mkdir(self.destination_dir)
 
         # checks for data having been loaded already first
-        onlyfiles = [f for f in listdir(destination_dir) if isfile(join(destination_dir, f))]
+        onlyfiles = [f for f in listdir(self.destination_dir) if isfile(join(self.destination_dir, f))]
         if len(onlyfiles) > 10:
-            print(len(onlyfiles), "data files already exist in", destination_dir)
+            print(len(onlyfiles), "data files already exist in", self.destination_dir)
             return len(onlyfiles)
 
         # checks if tgz is already downloaded from Google Drive
-        if exists(drive_data):
+        if exists(self.drive_data):
             print("tgz already downloaded")
         else:
             print("downloading tgz from Drive link with id=", self.drive_id)
-            self.download_file_from_google_drive(self.drive_id, drive_data)
+            if not test:
+                self.download_file_from_google_drive(self.drive_id, self.drive_data)
 
         # extracts files from tgz in place
-        print("extracting files from", drive_data)
-        shutil.unpack_archive(drive_data, data_dir)
-        onlyfiles = [f for f in listdir(destination_dir) if isfile(join(destination_dir, f))]
-        print("extracted", len(onlyfiles), "files to", destination_dir)
+        print("extracting files from", self.drive_data)
+        if not test:
+            shutil.unpack_archive(self.drive_data, self.data_dir)
+        onlyfiles = [f for f in listdir(self.destination_dir) if isfile(join(self.destination_dir, f))]
+        print("extracted", len(onlyfiles), "files to", self.destination_dir)
 
     def download_file_from_google_drive(self, id, destination):
         session = requests.Session()
@@ -73,4 +75,4 @@ class DataLoader():
 
 if __name__ == '__main__':
     loader = DataLoader()
-    loader.load_data()
+    loader.load_data(False)
