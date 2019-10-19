@@ -1,4 +1,5 @@
-from xml.dom import minidom 
+from xml.dom import minidom
+import os
 from os.path import dirname, abspath
 
 def parseXML(xmlfile):
@@ -17,4 +18,9 @@ def parseXML(xmlfile):
 
 
 dir_path = dirname(dirname(abspath(__file__)))
-parseXML(dir_path + "/grobid_processed/A00-1012.tei.xml")
+if os.name == 'nt':
+    dir_path += "\\"
+else:
+    dir_path += "/grobid_processed/A00-1012.tei.xml"
+
+parseXML(dir_path)
