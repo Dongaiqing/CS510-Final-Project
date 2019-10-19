@@ -3,7 +3,7 @@ from searchengine import app
 
 @app.route("/")
 def search():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route("/result")
 def rank():
