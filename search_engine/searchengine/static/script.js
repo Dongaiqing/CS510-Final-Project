@@ -6,12 +6,7 @@ const doSearch = function() {
 	$(".results-wrapper").empty();
 
 	query = $(".input-box").val();
-	if (query.length == 0) {
-		$(".no-result-wrapper").css("display", "flex");
-		$(".no-result-prompt").html(
-			`Your search "<p class="emphasis">${query}</p>" did not match any articles.`
-		);
-	} else {
+	if (query.length !== 0) {
 		$.ajax({
 			type: "POST",
 			url: URL + "search",
