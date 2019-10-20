@@ -2,3 +2,5 @@
 **/__pycache__/*
 .idea/*
 data/*
+**/.vscode/*
+**/grobid-0.5.6/*
