@@ -11,9 +11,15 @@ def search():
     req = request.get_json()
     results = model.query(req['query'], 10)
     res = list({'id': 'n/a', 'authors': 'n/a', 'link': 'n/a', 'title': result[0], 'abstract': result[1]} for result in results)
-    
-    return Response(response=json.dumps(res), 
-                    status=200, 
+    #prepare a res list
+    titles = []
+    abstracts = []
+    for i in range(len(results)):
+        titles += res[i]['title']
+        abstracts += res[i][abstracts]
+    resultData = {'titles': titles, 'abstracts': abstracts}
+    return Response(response=json.dumps(resultData),
+                    status=200,
                     mimetype="application/json")
 
 @app.route("/relevance-selection", methods=["POST"])
