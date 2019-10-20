@@ -47,6 +47,7 @@ class DataLoader():
             shutil.unpack_archive(self.drive_data, self.data_dir)
         onlyfiles = [f for f in listdir(self.destination_dir) if isfile(join(self.destination_dir, f))]
         print("extracted", len(onlyfiles), "files to", self.destination_dir)
+        return len(onlyfiles)
 
     def download_file_from_google_drive(self, id, destination):
         session = requests.Session()
