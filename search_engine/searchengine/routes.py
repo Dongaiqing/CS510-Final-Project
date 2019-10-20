@@ -16,8 +16,9 @@ def search():
     abstracts = []
     for i in range(len(results)):
         titles += res[i]['title']
-        abstracts += res[i][abstracts]
-    resultData = {'titles': titles, 'abstracts': abstracts}
+        abstracts += res[i]['abstracts']
+        ids += res[i]['id']
+    resultData = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
     return Response(response=json.dumps(resultData),
                     status=200,
                     mimetype="application/json")
