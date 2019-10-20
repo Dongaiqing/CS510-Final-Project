@@ -20,7 +20,7 @@ def search():
     for i in range(len(results)):
         titles.append(results[i][0])
         abstracts.append(results[i][1])
-        ids.append(results[i][1])
+        ids.append("pid_" + str(i))
 
     res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
 
