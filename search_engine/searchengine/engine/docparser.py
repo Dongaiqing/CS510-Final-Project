@@ -1,4 +1,5 @@
 import gzip
+import re
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 
@@ -56,6 +57,9 @@ class DocXMLParser():
     def parse(self, path):
         tree = ET.parse(path)
         root = tree.getroot()
+        regx = re.compile(r'.*(?<=/)(.*)\.tei*' )
+        self.doc.id = regx.search(path).group(1)
+
         for node in root.getiterator():
             if node.tag == self.prefix + "title":
                 self.doc.title = node.text
@@ -72,7 +76,7 @@ class DocXMLParser():
 
 # def main():
 #     parser = DocParser()
-#     docs = parser.parse_xml("search_engine/searchengine/static/project/A00-1002.tei.xml")
+#     docs = parser.parse_xml("/output/A00-1001.tei.xml")
 
 # if __name__ == "__main__":
 #     main()
