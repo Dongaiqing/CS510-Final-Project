@@ -91,7 +91,6 @@ body {
 .single-result-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     margin-top: 40px;
 }
