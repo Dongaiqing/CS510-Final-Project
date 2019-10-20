@@ -26,15 +26,12 @@ var doSearch = function() {
     url: URL+"search",
     data: JSON.stringify({query: query}),
 
-    contentType: "applicaton/json; charset=utf-8",
+    contentType: "application/json; charset=utf-8",
     success: function(res)
     {
       var num = Math.min(res.titles.length, 10);
       //TODO: # documents less than 10
-      if(num == 0) {
-        $(".no-result-wrapper").css("display", "flex");
-        $(".no-result-prompt").html(`Your search "<p class="emphasis">${searchQuery}</p>" did not match any articles.`);
-      } else{
+
         for (var i = 0; i < num; i++) {
           $(".results-wrapper").append("<div class='single-result-wrapper'>");
           buttons = "<div class='relevance-control-wrapper'><input class='relevance-radio' type='radio' id='rel' name='radio'><label class='radio-label radio-label-rel' for='rel'><i class='relevance-button fa fa-caret-up'></i></label><input class='relevance-radio' type='radio' id='irrel' name='radio'><label class='radio-label radio-label-irrel' for='irrel'><i class='relevance-button fa fa-caret-down'></i></label></div>";
@@ -46,14 +43,14 @@ var doSearch = function() {
           $(".results-wrapper").append("</p></div> </div>");
         }
         $(".results-wrapper").append("</div>");
-      }
+
 
     }
   });
 };
 
 $(document).ready(function(){
-    $(ß.search-button").click(function(){
+    $(".search-button").click(function(){
       query = $(".input-box").val();
       if (query.length == 0){
         $(".no-result-wrapper").css("display", "flex");

@@ -14,10 +14,11 @@ def search():
     #prepare a res list
     titles = []
     abstracts = []
+    ids = []
     for i in range(len(results)):
-        titles += res[i]['title']
-        abstracts += res[i]['abstracts']
-        ids += res[i]['id']
+        titles.append(res[i]['title'])
+        abstracts.append(res[i]['abstract'])
+        ids.append(res[i]['id'])
     resultData = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
     return Response(response=json.dumps(resultData),
                     status=200,
