@@ -1,7 +1,7 @@
 import shutil
 from os import listdir, mkdir
 from os.path import isfile, join, dirname, abspath, exists
-import os_directory
+from utils import os_directory
 import requests
 
 URL = "https://docs.google.com/uc?export=download"

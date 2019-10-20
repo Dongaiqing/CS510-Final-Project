@@ -4,7 +4,7 @@ from nltk.util import ngrams
 from collections import Counter
 from os import listdir
 from os.path import dirname, abspath
-from parse_xml import parseXML
+from searchengine.engine.parse_xml import parseXML
 from utils import os_directory
 from utils.data_loader import DataLoader
 import string
@@ -33,7 +33,10 @@ class UnigramLM:
     def parseAllXML(self):
         xml_list = listdir(self.data_dir)
         for i in range(self.data_size):
-            self.str_list[i], self.title_list[i], self.abstract_list[i] = parseXML(self.data_dir + xml_list[i])
+            try:
+                self.str_list[i], self.title_list[i], self.abstract_list[i] = parseXML(self.data_dir + xml_list[i])
+            except UnicodeDecodeError:
+                continue
     
     def convert_all_to_unigram(self):     
         '''
