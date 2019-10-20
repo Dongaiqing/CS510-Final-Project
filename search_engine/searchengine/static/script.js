@@ -17,7 +17,7 @@ const doSearch = function() {
 				const paperBaseUrl = "https://www.aclweb.org/anthology/";
 				var num = Math.min(res.titles.length, 10);
 				//TODO: # documents less than 10
-				if (num == 0) {
+				if (num === 0) {
 					$(".no-result-wrapper").css("display", "flex");
 					$(".no-result-prompt").html(
 						`Your search "<p class="emphasis">${query}</p>" did not match any articles.`
