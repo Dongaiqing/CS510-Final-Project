@@ -1,7 +1,7 @@
 /* fix for checkbox not working properly in Safari */
-@-webkit-keyframes bugfix { 
-  from { padding: 0; } 
-  to { padding: 0; } 
+@-webkit-keyframes bugfix {
+  from { padding: 0; }
+  to { padding: 0; }
 }
 
 body {
