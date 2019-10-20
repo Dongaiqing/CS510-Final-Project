@@ -36,12 +36,12 @@ var doSearch = function() {
         $(".no-result-prompt").html(`Your search "<p class="emphasis">${searchQuery}</p>" did not match any articles.`);
       } else{
         for (var i = 0; i < num; i++) {
-          $(".results-wrapper").append("<div class="single-result-wrapper">");
-          buttons = "<div class="relevance-control-wrapper"><input class="relevance-radio" type="radio" id="rel" name="radio"><label class="radio-label radio-label-rel" for="rel"><i class="relevance-button fa fa-caret-up"></i></label><input class="relevance-radio" type="radio" id="irrel" name="radio"><label class="radio-label radio-label-irrel" for="irrel"><i class="relevance-button fa fa-caret-down"></i></label></div>";
+          $(".results-wrapper").append("<div class='single-result-wrapper'>");
+          buttons = "<div class='relevance-control-wrapper'><input class='relevance-radio' type='radio' id='rel' name='radio'><label class='radio-label radio-label-rel' for='rel'><i class='relevance-button fa fa-caret-up'></i></label><input class='relevance-radio' type='radio' id='irrel' name='radio'><label class='radio-label radio-label-irrel' for='irrel'><i class='relevance-button fa fa-caret-down'></i></label></div>";
           $(".results-wrapper").append(buttons);
-          $(".results-wrapper").append("<div class="result-contents-wrapper"><a class="result-title" href="asd">")
+          $(".results-wrapper").append("<div class='result-contents-wrapper'><a class='result-title' href='asd'>")
           $(".results-wrapper").append(res.titles[i]);
-          $(".results-wrapper").append("</a><p class="result-abstract">");
+          $(".results-wrapper").append("</a><p class='result-abstract'>");
           $(".results-wrapper").append(res.abstracts[i]);
           $(".results-wrapper").append("</p></div> </div>");
         }
@@ -53,8 +53,12 @@ var doSearch = function() {
 };
 
 $(document).ready(function(){
-    $(".search-button").click(function(){
+    $(ß.search-button").click(function(){
       query = $(".input-box").val();
+      if (query.length == 0){
+        $(".no-result-wrapper").css("display", "flex");
+        $(".no-result-prompt").html('Your search "<p class="emphasis">${query}</p>" did not match any articles.');
+      }
       doSearch();
     });
     //relevance
