@@ -20,7 +20,7 @@ def search():
     for i in range(len(results)):
         titles.append(results[i][0])
         abstracts.append(results[i][1])
-        ids.append(results[i][1])
+        
 
     res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
 
@@ -43,7 +43,6 @@ def link_click_log():
     req = request.get_json()
     id = req['id']
     query = req['query']
-
     print("LINK CLICK EVENT: paper {} clicked under query '{}'.".format(id, query))
     return "Logged", 200
 

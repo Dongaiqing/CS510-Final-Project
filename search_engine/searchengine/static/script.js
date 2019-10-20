@@ -33,14 +33,25 @@ var doSearch = function() {
       //TODO: # documents less than 10
 
         for (var i = 0; i < num; i++) {
-          $(".results-wrapper").append("<div class='single-result-wrapper'>");
-          buttons = "<div class='relevance-control-wrapper'><input class='relevance-radio' type='radio' id='rel' name='radio'><label class='radio-label radio-label-rel' for='rel'><i class='relevance-button fa fa-caret-up'></i></label><input class='relevance-radio' type='radio' id='irrel' name='radio'><label class='radio-label radio-label-irrel' for='irrel'><i class='relevance-button fa fa-caret-down'></i></label></div>";
-          $(".results-wrapper").append(buttons);
-          $(".results-wrapper").append("<div class='result-contents-wrapper'><a class='result-title' href='asd'>")
-          $(".results-wrapper").append(res.titles[i]);
-          $(".results-wrapper").append("</a><p class='result-abstract'>");
-          $(".results-wrapper").append(res.abstracts[i]);
-          $(".results-wrapper").append("</p></div> </div>");
+          let div = `<div class="single-result-wrapper">
+              <div class="relevance-control-wrapper">
+                  <input class="relevance-radio" type="radio" id="rel" name="radio">
+                  <label class="radio-label radio-label-rel" for="rel">
+                      <i class="relevance-button fa fa-caret-up"></i>
+                  </label>
+                  <input class="relevance-radio" type="radio" id="irrel" name="radio">
+                  <label class="radio-label radio-label-irrel" for="irrel">
+                      <i class="relevance-button fa fa-caret-down"></i>
+                  </label>
+              </div>
+              <div class="result-contents-wrapper">
+                  <a class="result-title" href="asd">${res.titles[i]}</a>
+                  <p class="result-abstract">${res.abstracts[i]}</p>
+              </div>
+          </div>`;
+          $(".results-wrapper").append(div);
+
+
         }
         $(".results-wrapper").append("</div>");
 
