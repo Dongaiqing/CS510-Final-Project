@@ -9,17 +9,22 @@ import pprint
 @app.route("/search", methods=["POST"])
 def search():
     req = request.get_json()
+    print(req)
     results = model.query(req['query'], 10)
-    res = list({'id': 'n/a', 'authors': 'n/a', 'link': 'n/a', 'title': result[0], 'abstract': result[1]} for result in results)
+
     #prepare a res list
     titles = []
     abstracts = []
+    ids = []
+
     for i in range(len(results)):
-        titles += res[i]['title']
-        abstracts += res[i]['abstracts']
-        ids += res[i]['id']
-    resultData = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
-    return Response(response=json.dumps(resultData),
+        titles.append(results[i][0])
+        abstracts.append(results[i][1])
+        ids.append(results[i][1])
+
+    res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
+
+    return Response(response=json.dumps(res),
                     status=200,
                     mimetype="application/json")
 

@@ -26,7 +26,7 @@ var doSearch = function() {
     url: URL+"search",
     data: JSON.stringify({query: query}),
 
-    contentType: "applicaton/json; charset=utf-8",
+    contentType: "application/json; charset=utf-8",
     success: function(res)
     {
       var num = Math.min(res.titles.length, 10);
@@ -53,7 +53,7 @@ var doSearch = function() {
 };
 
 $(document).ready(function(){
-    $(ß.search-button").click(function(){
+    $(".search-button").click(function(){
       query = $(".input-box").val();
       if (query.length == 0){
         $(".no-result-wrapper").css("display", "flex");
