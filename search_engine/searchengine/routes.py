@@ -10,7 +10,7 @@ import pprint
 def search():
     req = request.get_json()
     results = model.query(req['query'], 10)
-    res = list({'title': result[0], 'abstract': result[1]} for result in results)
+    res = list({'id': 'n/a', 'authors': 'n/a', 'link': 'n/a', 'title': result[0], 'abstract': result[1]} for result in results)
     
     return Response(response=json.dumps(res), 
                     status=200, 
