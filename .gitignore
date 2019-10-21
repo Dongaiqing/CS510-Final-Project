@@ -4,3 +4,4 @@
 data/*
 **/.vscode/*
 **/grobid-0.5.6/*
+*.npy
