@@ -3,18 +3,19 @@ from nltk import word_tokenize
 from nltk.util import ngrams
 from collections import Counter
 from os import listdir
-from os.path import dirname, abspath
+from os.path import dirname, abspath, isfile
 import os
 from searchengine.engine.parse_xml import parseXML
 from utils import os_directory
-from utils.data_loader import DataLoader
+from utils.data_loader import DataLoader, KaggleLoader, csvParse
 import string
 import math
 import numpy as np
+import pickle
 
 class UnigramLM:
     def __init__(self, data_dir, data_size, lam):
-        # lam stands for lamda
+        # lam stands for lambda
         self.data_dir = data_dir
         self.data_size = data_size
         self.total_words = 0
@@ -118,15 +119,44 @@ class UnigramLM:
                 score += math.log(n, 2)
         return score
 
+
+class KaggleModel:
+    def __init__(self, data_dir):
+        self.files = []
+        for r, d, f in os.walk(data_dir):
+            print(r,d,f)
+            for file in f:
+                if isfile(os.path.join(r, file)):
+                    self.files.append(os.path.join(r, file))
+
+    def load_data(self):
+        # pickle load kaggle/articles_embeddings.pickle
+        embeddings_filename = ''.join([file if "articles_embeddings.pickle" in file else '' for file in self.files])
+        self.article_embeddings = pickle.load(open(embeddings_filename, "rb"))
+        num_articles = len(self.article_embeddings)                  # 364047
+        article_embedding_size = len(self.article_embeddings[0])     # 250
+
+        # csv load kaggle/articles_metadata.csv
+        metadata_filename = ''.join([file if "articles_metadata.csv" in file else '' for file in self.files])
+        self.article_metadata = csvParse(metadata_filename)[1:]      # article_id, category_id, created_at_ts, publisher_id, words_count
+
+        self.clicks_hour = [None] * 385
+        # csv load .../clicks/clicks/clicks_hour_*.csv
+        # user_id, session_id, session_start, session_size, click_article_id, click_timestamp, click_environment,
+        # click_deviceGroup, click_os, click_country, click_region, click_referrer_type
+        for hour in self.files:
+            if "clicks_hour" not in hour:
+                continue
+            self.clicks_hour[int(hour.split('_')[-1].split('.')[0])] = csvParse(hour)[1:]
+
+
 def main():
-    loader = DataLoader()
-    num_files = loader.load_data()
+    kag = KaggleLoader()
+    kag.load_data()
 
-    # use xml parser here, pass data into UnigramLM?
+    KagLM = KaggleModel(kag.data_dir)
+    KagLM.load_data()
 
-    LM = UnigramLM(loader.destination_dir, num_files, 0.1)
-    counter = LM.get_Counter(11)
-    print(LM.query("translation", 10))
 
 if __name__ == '__main__':
     main()

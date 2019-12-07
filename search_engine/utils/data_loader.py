@@ -3,10 +3,38 @@ from os import listdir, mkdir
 from os.path import isfile, join, dirname, abspath, exists
 from utils import os_directory
 import requests
+import kaggle
 
 URL = "https://docs.google.com/uc?export=download"
 
-class DataLoader():
+class KaggleLoader:
+    def __init__(self,
+                 dataset_name="gspmoreira/news-portal-user-interactions-by-globocom",
+                 data_path="/../data/kaggle/",
+                 unzip=True):
+        self.data_path = data_path
+        self.dataset_name = dataset_name
+        self.unzip = unzip
+
+        self.data_dir = os_directory.safe_dir(dirname(dirname(abspath(__file__)))+self.data_path)
+
+    # returns number of data files in data path
+    def load_data(self, test=False):
+        if not exists(self.data_dir):
+            mkdir(self.data_dir)
+
+        # checks for data having been loaded already first
+        onlyfiles = [f for f in listdir(self.data_dir) if isfile(join(self.data_dir, f))]
+        if len(onlyfiles) >= 3:
+            print("data files already exist in", self.data_dir)
+            return
+
+        kaggle.api.authenticate()  # https://www.kaggle.com/docs/api
+        print("loading kaggle dataset from", self.dataset_name,"to destination:", self.data_dir)
+        kaggle.api.dataset_download_files(self.dataset_name, path=self.data_dir, unzip=self.unzip)
+
+
+class DataLoader:
     def __init__(self,
                  drive_id="10UBBDPJ37u6JvVPMK1OkGfEWGM-GwEOz",
                  data_path="/../data",
@@ -73,6 +101,15 @@ class DataLoader():
             for chunk in response.iter_content(CHUNK_SIZE):
                 if chunk: # filter out keep-alive new chunks
                     f.write(chunk)
+
+
+def csvParse(file):
+    out = []
+    with open(file) as f:
+        for line in f:
+            out.append(line.split(','))
+    return out
+
 
 if __name__ == '__main__':
     loader = DataLoader()
