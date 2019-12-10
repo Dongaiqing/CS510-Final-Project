@@ -15,14 +15,14 @@ body {
 }
 
 .title {
-    font-size: 55px;
+    font-size: 45px;
     color: rgb(118, 118, 118);
     margin: 40px;
 }
 
 .input-wrapper {
     width: 80%;
-    height: 60px;
+    height: 45px;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -31,9 +31,9 @@ body {
 .input-box {
     flex-grow: 10;
     box-sizing:border-box;
-    font-size: 25px;
+    font-size: 22px;
     margin: 0;
-    padding-left: 15px;
+    padding-left: 12px;
 }
 
 .input-box::placeholder {
@@ -45,8 +45,8 @@ body {
 }
 
 .search-button {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     flex-grow: 1;
     background-color: rgb(41, 136, 250);
     cursor: pointer;
@@ -55,12 +55,13 @@ body {
     justify-content: center;
     outline: none;
     border: none;
+    padding: 5px;
     transition: .3s;
 }
 
 .search-button svg {
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     fill: white;
 }
 
@@ -145,10 +146,15 @@ body {
 }
 
 .result-title {
-    font-size: 25px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: 22px;
     text-decoration: none;
+    overflow: hidden;
     color: rgb(63, 131, 215);
     transition: .2s;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
 }
 
 .result-title:hover {
@@ -164,11 +170,61 @@ body {
 }
 
 .result-abstract {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-size: 18px;
     margin: 5px 0 5px 0;
+    -webkit-line-clamp: 5;
+    text-overflow: ellipsis;
 }
 
 .emphasis {
     display: inline;
     color: rgb(210, 86, 86);
+}
+
+@media (max-width: 700px) {
+    .title {
+        font-size: 30px;
+        color: rgb(118, 118, 118);
+        margin: 20px;
+    }
+
+    .input-wrapper {
+        width: 80%;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+    
+    .input-box {
+        flex-grow: 10;
+        box-sizing:border-box;
+        font-size: 15px;
+        margin: 0;
+        padding-left: 15px;
+    }
+    
+    .search-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .result-title {
+        font-size: 15px;
+    }
+
+    .result-abstract {
+        font-size: 12px;
+    }
+
+    .single-result-wrapper {
+        margin-top: 20px;
+    }
+
+    .relevance-control-wrapper {
+        font-size: 30px;
+    }
 }
