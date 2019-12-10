@@ -86,3 +86,33 @@ $(".input-box").on("keyup", e => {
 $(".search-button").on("click", () => {
 	doSearch();
 });
+
+$(".uid-submission-bt").on("click", () => {
+	let uidInput = $("#uid-input").val();
+	if (uidInput !== "") {
+		localStorage.setItem("uid", uidInput);
+		displayUid();
+	}
+});
+
+$(".log-out-button").on("click", () => {
+	localStorage.clear();
+	displayUid();
+});
+
+const displayUid = () => {
+	let uid = localStorage.getItem("uid");
+	console.log("UID: " + uid);
+	if (uid !== null) {
+		$(".uid-input-wrapper").css("display", "none");
+		$(".log-out-wrapper").css("display", "flex");
+		$(".uid-p").text(uid);
+	} else {
+		$(".log-out-wrapper").css("display", "none");
+		$(".uid-input-wrapper").css("display", "flex");
+	}
+};
+
+$(document).ready(() => {
+	displayUid();
+});
