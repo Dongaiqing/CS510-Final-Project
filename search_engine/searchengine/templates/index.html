@@ -5,18 +5,22 @@
     <title>Literature Search Engine</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="uid-wrapper">
-        <div class="uid-input-wrapper">
-            <div>User ID: <input id="uid-input" type="text" name="uid-input"><button class="uid-submission-bt">Submit</button></div>
+        <div class="uid-box" id="uid-input-wrapper">
+            <div>
+                <input id="uid-input" type="text" name="uid-input" placeholder="User ID">
+                <i id="uid-submission-bt" class="uid-bt fas fa-sign-in-alt"></i>
+            </div>
         </div>
-        <div class="log-out-wrapper">
+        <div class="uid-box" id="log-out-wrapper">
+            <i class="fas fa-user"></i>
             <p class="uid-p"></p>
-            <button class="log-out-button">Logout</button>
+            <i id="log-out-button" class="uid-bt fas fa-sign-out-alt"></i>
         </div>
     </div>
     <p class="title">Literature Search Engine</p>

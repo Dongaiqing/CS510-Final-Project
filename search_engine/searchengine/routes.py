@@ -10,6 +10,8 @@ import pprint
 def search():
     req = request.get_json()
     print(req)
+    uid = req['uid']
+    print(uid)
     results = model.query(req['query'], 10)
 
     #prepare a res list

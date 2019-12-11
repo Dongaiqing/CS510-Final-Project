@@ -4,14 +4,16 @@ const URL = "http://127.0.0.1:5000/";
 
 const doSearch = function() {
 	$(".results-wrapper").empty();
-
+	let uid = localStorage.getItem("uid");
 	query = $(".input-box").val();
 	if (query.length !== 0) {
 		$.ajax({
 			type: "POST",
 			url: URL + "search",
-			data: JSON.stringify({ query: query }),
-
+			data: JSON.stringify({
+				query: query,
+				uid: uid === null ? "" : uid
+			}),
 			contentType: "application/json; charset=utf-8",
 			success: function(res) {
 				const paperBaseUrl = "https://www.aclweb.org/anthology/";
@@ -87,15 +89,17 @@ $(".search-button").on("click", () => {
 	doSearch();
 });
 
-$(".uid-submission-bt").on("click", () => {
-	let uidInput = $("#uid-input").val();
-	if (uidInput !== "") {
-		localStorage.setItem("uid", uidInput);
-		displayUid();
+$("#uid-submission-bt").on("click", () => {
+	setUid();
+});
+
+$("#uid-input").on("keyup", e => {
+	if (e.keyCode === 13) {
+		setUid();
 	}
 });
 
-$(".log-out-button").on("click", () => {
+$("#log-out-button").on("click", () => {
 	localStorage.clear();
 	displayUid();
 });
@@ -104,12 +108,20 @@ const displayUid = () => {
 	let uid = localStorage.getItem("uid");
 	console.log("UID: " + uid);
 	if (uid !== null) {
-		$(".uid-input-wrapper").css("display", "none");
-		$(".log-out-wrapper").css("display", "flex");
+		$("#uid-input-wrapper").css("display", "none");
+		$("#log-out-wrapper").css("display", "flex");
 		$(".uid-p").text(uid);
 	} else {
-		$(".log-out-wrapper").css("display", "none");
-		$(".uid-input-wrapper").css("display", "flex");
+		$("#log-out-wrapper").css("display", "none");
+		$("#uid-input-wrapper").css("display", "flex");
+	}
+};
+
+const setUid = () => {
+	let uidInput = $("#uid-input").val();
+	if (uidInput !== "") {
+		localStorage.setItem("uid", uidInput);
+		displayUid();
 	}
 };
 
