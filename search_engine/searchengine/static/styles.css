@@ -40,8 +40,8 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: solid #eeeeee 1px;
-
+    border-bottom: solid #b4b4b4 1px;
+    font-size: 18px;
 }
 
 #uid-input:focus {
@@ -50,6 +50,10 @@ body {
 
 #uid-input::placeholder {
     color: rgb(203, 203, 203);
+}
+
+#usr-avatar {
+    color: #6d6d6d;
 }
 
 .uid-bt {

@@ -101,6 +101,7 @@ $("#uid-input").on("keyup", e => {
 
 $("#log-out-button").on("click", () => {
 	localStorage.clear();
+	$("#uid-input").val("");
 	displayUid();
 });
 
