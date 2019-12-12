@@ -3,28 +3,64 @@ import json
 
 from searchengine import app
 from searchengine import model
+import random
 
-import pprint
+## for fake demo ##
+usrs = {}
+###################
 
 @app.route("/search", methods=["POST"])
 def search():
+    global usrs
+
     req = request.get_json()
     print(req)
     uid = req['uid']
-    print(uid)
-    results = model.query(req['query'], 10)
+    
+    ## for fake demo ##
+    if uid.lower() in usrs and len(usrs[uid.lower()]) != 0:
+        results = model.query(req['query'], 20)
+    else:
+    ###################
+        results = model.query(req['query'], 10)
 
-    #prepare a res list
+    # prepare a res list
     titles = []
     abstracts = []
     ids = []
 
+    ## for fake demo ##
+    previous_selections = []
+    ###################
+
     for i in range(len(results)):
+        ## for fake demo ##
+        if uid.lower() in usrs:
+            if results[i][2] in usrs[uid.lower()]:
+                previous_selections.append(results[i])
+                continue
+            elif len(usrs[uid.lower()]) != 0 and i < 10:
+                continue
+        ###################
         titles.append(results[i][0])
         abstracts.append(results[i][1])
         ids.append(results[i][2])
 
-    res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
+    print(previous_selections)
+
+    ## for fake demo ##
+    res = {}
+    if uid.lower() in usrs:
+        random.shuffle(previous_selections)
+        for sel in previous_selections:
+            titles.insert(0, sel[0])
+            abstracts.insert(0, sel[1])
+            ids.insert(0, sel[2])
+
+        res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
+    else:
+    ###################
+        res = {'titles': titles, 'abstracts': abstracts, 'ids': ids}
 
     return Response(response=json.dumps(res),
                     status=200,
@@ -34,19 +70,30 @@ def search():
 def rel_selection_log():
     req = request.get_json()
     id = req['id']
+    uid = req['uid']
     query = req['query']
     rel = req['rel']
 
-    print("RELEVANCE SELECTION EVENT: paper {} marked {} to query '{}'.".format(id, "relevant" if rel == 1 else "irrelevant", query))
+    print("USER {}: paper {} marked {} to query '{}'.".format(uid, id, "relevant" if rel == 1 else "irrelevant", query))
     return "Logged", 200
 
 @app.route("/link-click", methods=["POST"])
 def link_click_log():
+    global usrs
     req = request.get_json()
     id = req['id']
+    uid = req['uid']
     query = req['query']
+    
+    ## for fake demo ##
+    if uid.lower() in usrs:
+        usrs[uid.lower()].add(id)
+    else:
+        usrs[uid.lower()] = set()
+        usrs[uid.lower()].add(id)
+    ###################
 
-    print("LINK CLICK EVENT: paper {} clicked under query '{}'.".format(id, query))
+    print("USER {}: paper {} clicked under query '{}'.".format(uid, id, query))
     return "Logged", 200
 
 @app.route("/")

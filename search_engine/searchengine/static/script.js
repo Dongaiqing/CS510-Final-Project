@@ -4,7 +4,7 @@ const URL = "http://127.0.0.1:5000/";
 
 const doSearch = function() {
 	$(".results-wrapper").empty();
-	let uid = localStorage.getItem("uid");
+	const uid = localStorage.getItem("uid");
 	query = $(".input-box").val();
 	if (query.length !== 0) {
 		$.ajax({
@@ -55,16 +55,22 @@ const doSearch = function() {
 
 // log link clicks
 $(".results-wrapper").on("click", "a", function(e) {
+	const uid = localStorage.getItem("uid");
 	$.ajax({
 		type: "POST",
 		url: URL + "link-click",
 		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify({ query: query, id: e.target.id })
+		data: JSON.stringify({ 
+			query: query, 
+			id: e.target.id,
+			uid: uid === null ? "" : uid
+		})
 	});
 });
 
 // log relevance selections
 $(document).on("change", 'input[type="radio"]', e => {
+	const uid = localStorage.getItem("uid");
 	$.ajax({
 		type: "POST",
 		url: URL + "relevance-selection",
@@ -72,7 +78,8 @@ $(document).on("change", 'input[type="radio"]', e => {
 		data: JSON.stringify({
 			query: query,
 			id: e.target.value,
-			rel: e.target.id.split("_")[0] === "rel" ? 1 : 0
+			rel: e.target.id.split("_")[0] === "rel" ? 1 : 0,
+			uid: uid === null ? "" : uid
 		})
 	});
 });
