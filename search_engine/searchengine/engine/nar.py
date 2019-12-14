@@ -1,7 +1,7 @@
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
 
-
-def nar_model(train_data, train_label, embedding):
+def nar_model(train_data, train_label, embedding, user_profile):
     """
     A multi-layer neural network model
 
@@ -9,6 +9,7 @@ def nar_model(train_data, train_label, embedding):
     train_data -- dataset that have articles user cluster clicked, and skipped
     train_label -- to simplify, use 1 or 0 to classify: 0 not clicked, 1 clicked
     embedding -- article embedding: numpy matrix, the output of ACR model
+    user_id -- the current user
 
     Output:
     recommendation: list of article id that might be clicked by this class of user
@@ -17,11 +18,13 @@ def nar_model(train_data, train_label, embedding):
     clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                      hidden_layer_sizes=(5, 2), random_state=1)
 
+    scaler = StandardScaler()
+    scaler.fit(train_data)
     clf.fit(train_data, train_label)
     MLPClassifier(alpha=1e-05, hidden_layer_sizes=(5, 2), random_state=1,
                 solver='lbfgs')
-    
-    result = clf.predict(embedding)
+
+    result = clf.predict(user_profile)
     recommendation = []
     # store article id into recommendtaion
     for i in range(len(result)):
