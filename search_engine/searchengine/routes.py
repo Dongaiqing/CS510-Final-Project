@@ -84,6 +84,7 @@ def link_click_log():
     id = req['id']
     uid = req['uid']
     query = req['query']
+    time = req['time']
     
     ## for fake demo ##
     if uid.lower() in usrs:
@@ -93,7 +94,7 @@ def link_click_log():
         usrs[uid.lower()].add(id)
     ###################
 
-    print("USER {}: paper {} clicked under query '{}'.".format(uid, id, query))
+    print("USER {}: paper {} clicked under query '{}' for {} seconds.".format(uid, id, query, time))
     return "Logged", 200
 
 @app.route("/")

@@ -16,7 +16,6 @@ const doSearch = function() {
 			}),
 			contentType: "application/json; charset=utf-8",
 			success: function(res) {
-				const paperBaseUrl = "https://www.aclweb.org/anthology/";
 				var num = Math.min(res.titles.length, 10);
 				//TODO: # documents less than 10
 				if (num === 0) {
@@ -39,7 +38,7 @@ const doSearch = function() {
                 </label>
             </div>
             <div class="result-contents-wrapper">
-                <a id="${res.ids[i]}" class="result-title" href="${paperBaseUrl}${res.ids[i]}.pdf" target="_blank">${res.titles[i]}</a>
+                <a id="${res.ids[i]}" class="result-title">${res.titles[i]}</a>
                 <p class="result-abstract">${res.abstracts[i]}</p>
             </div>
         </div>
@@ -55,16 +54,38 @@ const doSearch = function() {
 
 // log link clicks
 $(".results-wrapper").on("click", "a", function(e) {
+	// track time user spent on paper
+	localStorage.setItem("starttime", new Date().getTime());
+
+	const pid = e.target.id;
 	const uid = localStorage.getItem("uid");
-	$.ajax({
-		type: "POST",
-		url: URL + "link-click",
-		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify({ 
-			query: query, 
-			id: e.target.id,
-			uid: uid === null ? "" : uid
-		})
+	const paperBaseUrl = "https://www.aclweb.org/anthology/";
+	const pdfUrl = `${paperBaseUrl}${pid}.pdf`;
+	let pdfPreviewDiv = `
+		<div class="pdf-overlay">
+			<i class="pdf-close-bt fas fa-times-circle"></i>
+			<iframe src="http://docs.google.com/gview?url=${pdfUrl}&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
+		</div>`
+	$("body").append(pdfPreviewDiv);
+	$(".pdf-close-bt").on("click", () => {
+		$(".pdf-overlay").css("display", "none");
+		$(".pdf-overlay").remove();
+		
+		const start = localStorage.getItem("starttime");
+		const end =  new Date().getTime();
+		localStorage.removeItem("starttime");
+
+		$.ajax({
+			type: "POST",
+			url: URL + "link-click",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({ 
+				query: query, 
+				id: pid,
+				uid: uid === null ? "" : uid,
+				time: (end - start) / 1000
+			})
+		});
 	});
 });
 
@@ -107,7 +128,7 @@ $("#uid-input").on("keyup", e => {
 });
 
 $("#log-out-button").on("click", () => {
-	localStorage.clear();
+	localStorage.removeItem("uid");
 	$("#uid-input").val("");
 	displayUid();
 });
