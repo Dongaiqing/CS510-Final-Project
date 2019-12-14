@@ -64,7 +64,7 @@ $(".results-wrapper").on("click", "a", function(e) {
 	let pdfPreviewDiv = `
 		<div class="pdf-overlay">
 			<i class="pdf-close-bt fas fa-times-circle"></i>
-			<iframe src="http://docs.google.com/gview?url=${pdfUrl}&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
+			<object data="${pdfUrl}" style="width:100%; height:100%;"></object>
 		</div>`
 	$("body").append(pdfPreviewDiv);
 	$(".pdf-close-bt").on("click", () => {
