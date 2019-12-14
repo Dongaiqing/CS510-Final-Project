@@ -25,8 +25,8 @@ const doSearch = function() {
 					);
 				} else {
 					for (var i = 0; i < num; i++) {
-						let div = `
-          <div class="single-result-wrapper">
+						let div = 
+		`<div class="single-result-wrapper">
             <div class="relevance-control-wrapper">
                 <input value="${res.ids[i]}" class="relevance-radio" type="radio" id="rel_${i}" name="radio_${i}">
                 <label class="radio-label radio-label-rel" for="rel_${i}">
@@ -41,8 +41,7 @@ const doSearch = function() {
                 <a id="${res.ids[i]}" class="result-title">${res.titles[i]}</a>
                 <p class="result-abstract">${res.abstracts[i]}</p>
             </div>
-        </div>
-          `;
+        </div>`;
 						$(".results-wrapper").append(div);
 					}
 					$(".results-wrapper").append("</div>");
@@ -65,23 +64,23 @@ $(".results-wrapper").on("click", "a", function(e) {
 		<div class="pdf-overlay">
 			<i class="pdf-close-bt fas fa-times-circle"></i>
 			<object data="${pdfUrl}" style="width:100%; height:100%;"></object>
-		</div>`
+		</div>`;
 	$("body").append(pdfPreviewDiv);
 	$(".pdf-close-bt").on("click", () => {
 		$(".pdf-overlay").css("display", "none");
 		$(".pdf-overlay").remove();
-		
+
 		const start = localStorage.getItem("starttime");
-		const end =  new Date().getTime();
+		const end = new Date().getTime();
 		localStorage.removeItem("starttime");
 
 		$.ajax({
 			type: "POST",
 			url: URL + "link-click",
 			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify({ 
-				query: query, 
-				id: pid,
+			data: JSON.stringify({
+				query: query,
+				pid: pid,
 				uid: uid === null ? "" : uid,
 				time: (end - start) / 1000
 			})
@@ -98,7 +97,7 @@ $(document).on("change", 'input[type="radio"]', e => {
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify({
 			query: query,
-			id: e.target.value,
+			pid: e.target.value,
 			rel: e.target.id.split("_")[0] === "rel" ? 1 : 0,
 			uid: uid === null ? "" : uid
 		})

@@ -31,23 +31,23 @@ def search():
 @app.route("/relevance-selection", methods=["POST"])
 def rel_selection_log():
     req = request.get_json()
-    id = req['id']
+    pid = req['pid']
     uid = req['uid']
     query = req['query']
     rel = req['rel']
 
-    print("USER {}: paper {} marked {} to query '{}'.".format(uid, id, "relevant" if rel == 1 else "irrelevant", query))
+    print("==== [REL SEL EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [REL] - {}".format(uid, query, pid, rel))
     return "Logged", 200
 
 @app.route("/link-click", methods=["POST"])
 def link_click_log():
     req = request.get_json()
-    id = req['id']
+    pid = req['pid']
     uid = req['uid']
     query = req['query']
     time = req['time']
 
-    print("USER {}: paper {} clicked under query '{}' for {} seconds.".format(uid, id, query, time))
+    print("==== [CLICK EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [TIME] - {}s".format(uid, query, pid, time))
     return "Logged", 200
 
 @app.route("/")
