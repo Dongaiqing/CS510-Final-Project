@@ -1,11 +1,13 @@
 import shutil
 from os import listdir, mkdir
 from os.path import isfile, join, dirname, abspath, exists
+import numpy
 from utils import os_directory
 import requests
 import kaggle
 
 URL = "https://docs.google.com/uc?export=download"
+cluster_output_file = "clustering_results.out"
 
 class KaggleLoader:
     def __init__(self,
@@ -32,6 +34,39 @@ class KaggleLoader:
         kaggle.api.authenticate()  # https://www.kaggle.com/docs/api
         print("loading kaggle dataset from", self.dataset_name,"to destination:", self.data_dir)
         kaggle.api.dataset_download_files(self.dataset_name, path=self.data_dir, unzip=self.unzip)
+
+    @staticmethod
+    def string_for_numpy(arr):
+        return ','.join([str(x) for x in arr])
+
+    def output_cluster_files(self, user_cluster_map, cluster_embedding_map):
+        '''Writes user and cluster files to data directory'''
+        filename = os_directory.safe_dir(self.data_dir+cluster_output_file)
+        with open(filename, 'w') as file:
+            file.write(str(len(user_cluster_map)) + '\n')
+            file.write(str(len(cluster_embedding_map)) + '\n')
+            for i in user_cluster_map:
+                file.write(str(i) + ' ' + str(user_cluster_map[i]) + '\n')
+            for i in cluster_embedding_map:
+                file.write(str(i) + ' ' + self.string_for_numpy(cluster_embedding_map[i]) + '\n')
+
+    def load_cluster_files(self):
+        '''loads user and cluster files, returning the data - should be put in the data_loader, probably'''
+        filename = os_directory.safe_dir(self.data_dir+cluster_output_file)
+        user_cluster_map = {}
+        cluster_embedding_map = {}
+
+        with open(filename, 'r') as file:
+            user_len = int(file.readline())
+            cluster_len = int(file.readline())
+            for i in range(user_len):
+                line = file.readline().strip().split()
+                user_cluster_map[int(line[0])] = int(line[1])
+            for i in range(cluster_len):
+                line = file.readline().strip().split()
+                cluster_embedding_map[int(line[0])] = numpy.array(line[1].split(',')).astype(numpy.float)
+
+        return user_cluster_map, cluster_embedding_map
 
 
 class DataLoader:
