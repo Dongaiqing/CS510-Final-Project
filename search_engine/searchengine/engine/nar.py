@@ -50,7 +50,7 @@ class NARModel:
                     solver='lbfgs')
         return clf
 
-    def recommend(self, train_data, train_label, embedding, user_cluster):
+    def recommend(self, train_data, train_label, embedding, user_cluster, top_k):
         """
         A multi-layer neural network model
 
@@ -58,22 +58,23 @@ class NARModel:
         train_data -- dataset that have articles user cluster clicked, and skipped
         train_label -- to simplify, use 1 or 0 to classify: 0 not clicked, 1 clicked
         embedding -- article embedding: numpy matrix, the output of ACR model
-        user_id -- the current user
+        user_cluster -- the cluster current user is in
 
         Output:
-        recommendation: list of article id that might be clicked by this class of user
+        recommendation: list of top k <article id, score> that might be clicked by this class of user
 
         """
         clf = self.train(train_data, train_label)
 
         result = clf.predict(embedding)
+        result_prob = clf.predict_proba(embedding)
         recommendation = []
         # store article id into recommendtaion
         for i in range(len(result)):
             if result[i] == 1:
-                recommendation.append(i)
-
-        return recommendation
+                recommendation.append([i, max(result_prob[i])])
+        recommendation.sort(key=lambda tup: tup[1])
+        return recommendation[:top_k]
 
 def main():
     article_path = "/home/xin/project/search_engine/searchengine/engine/grobid_data.pkl"
@@ -84,7 +85,8 @@ def main():
 
     # sample test data
     user_cluster = 1
-    article_embedding = [[0., 0.], [1., 1.], [2., 2.], [0., 1.]]
+    article_embedding = [[0., 0.], [1., 1.], [0., 0.], [1., 1.]]
+    train_label = [1, 0]
     query_embedding = [[0., 1.], [0., 2.], [1., 1.]]
     model.generate_train_data(article_embedding, query_embedding, user_cluster)
     train_data = model.train_data
@@ -93,7 +95,8 @@ def main():
     model.generate_test_data(article_embedding, query_embedding[model.query_count], user_cluster)
     test_data = model.test_data
 
-    recommendation = model.recommend(train_data, train_label, test_data, None)
+    top_k = 1
+    recommendation = model.recommend(train_data, train_label, test_data, user_cluster, top_k)
     print(recommendation)
 
 if __name__ == "__main__":
