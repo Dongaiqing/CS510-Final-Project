@@ -10,8 +10,8 @@ class NARModel:
         self.train_data = []
         self.train_label = []
         self.test_data = []
-        self.query_count = 1
-        self.article_count = 2
+        self.query_count = 1 # number of queries that have already been queried by this user in this active session
+        self.article_count = 2 # number of articles read by this user in this active session, the remaining articles will be used for recommendation
 
     def generate_train_data(self, article_embedding, query_embedding, user_cluster):
         """
@@ -29,7 +29,7 @@ class NARModel:
             for j in range(self.article_count):
                 self.train_data.append([user_cluster] + self.train_query[i] + self.train_articles[j])
 
-
+    # label is generated randomly since we have no ideas on article id and query id
     def generate_train_label(self):
         for i in range(self.query_count*self.article_count):
             self.train_label.append(random.randint(0, 1))
@@ -43,8 +43,8 @@ class NARModel:
         clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
                         hidden_layer_sizes=(5, 2), random_state=1)
 
-        # scaler = StandardScaler()
-        # scaler.fit(train_data)
+        scaler = StandardScaler()
+        scaler.fit(train_data)
         clf.fit(train_data, train_label)
         MLPClassifier(alpha=1e-05, hidden_layer_sizes=(5, 2), random_state=1,
                     solver='lbfgs')
@@ -77,16 +77,15 @@ class NARModel:
         return recommendation[:top_k]
 
 def main():
-    article_path = "/home/xin/project/search_engine/searchengine/engine/grobid_data.pkl"
-    query_path = "/home/xin/project/search_engine/searchengine/engine/query_data.pkl"
+    article_path = "/search_engine/searchengine/engine/grobid_data.pkl"
+    query_path = "/project/search_engine/searchengine/engine/query_data.pkl"
     model = NARModel()
     model.generate_train_label()
     train_label = model.train_label
 
     # sample test data
-    user_cluster = 1
+    user_cluster = 1 # which cluster this user belongs to
     article_embedding = [[0., 0.], [1., 1.], [0., 0.], [1., 1.]]
-    train_label = [1, 0]
     query_embedding = [[0., 1.], [0., 2.], [1., 1.]]
     model.generate_train_data(article_embedding, query_embedding, user_cluster)
     train_data = model.train_data
@@ -94,8 +93,8 @@ def main():
     # use the next untrained query as current query
     model.generate_test_data(article_embedding, query_embedding[model.query_count], user_cluster)
     test_data = model.test_data
-
-    top_k = 1
+   
+    top_k = 1 # how many articles we return based on the score
     recommendation = model.recommend(train_data, train_label, test_data, user_cluster, top_k)
     print(recommendation)
 
