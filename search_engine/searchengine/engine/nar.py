@@ -2,6 +2,7 @@ import pickle
 import random
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
+from clustering import *
 
 class NARModel:
     def __init__(self):
@@ -84,7 +85,9 @@ def main():
     train_label = model.train_label
 
     # sample test data
-    user_cluster = 1 # which cluster this user belongs to
+    user_id = 1 # test user id
+    user_ids, user_embeddings, user_cluster_map, cluster_embedding_map = bootstrap() # get userid, cluster id map from clustering
+    user_cluster = user_cluster_map[user_id] # which cluster this user belongs to
     article_embedding = [[0., 0.], [1., 1.], [0., 0.], [1., 1.]]
     query_embedding = [[0., 1.], [0., 2.], [1., 1.]]
     model.generate_train_data(article_embedding, query_embedding, user_cluster)
