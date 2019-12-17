@@ -150,6 +150,13 @@ const setUid = () => {
 	if (uidInput !== "") {
 		localStorage.setItem("uid", uidInput);
 		displayUid();
+
+		$.ajax({
+			type: "POST",
+			url: URL + "login",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({ uid: uidInput })
+		});
 	}
 };
 

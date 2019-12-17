@@ -3,6 +3,7 @@ import json
 
 from searchengine import app
 from searchengine import model
+from searchengine import db_controller
 import random
 
 @app.route("/search", methods=["POST"])
@@ -49,6 +50,14 @@ def link_click_log():
 
     print("==== [CLICK EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [TIME] - {}s".format(uid, query, pid, time))
     return "Logged", 200
+
+@app.route("/login", methods=["POST"])
+def log_in():
+    req = request.get_json()
+    u_name = req['uid']
+    db_controller.add_user(u_name)
+    print("==== [LOG IN EVENT] ====\n  [USER] - {}".format(u_name))
+    return "Logged in", 200
 
 @app.route("/")
 def root():
