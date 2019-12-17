@@ -38,7 +38,7 @@ body {
       color: rgb(103, 171, 255);
   }
 
-.uid-wrapper {
+.uname-wrapper {
     margin: 20px;
     padding-right: 100px;
     display: flex;
@@ -47,18 +47,18 @@ body {
     align-items: center;
 }
 
-.uid-box {
+.uname-box {
     font-size: 18px;
     align-items: center;
 }
 
-.uid-p {
+.uname-p {
     margin: 0px 5px 0px 10px;
     padding: 0;
     color: rgb(118, 118, 118);
 }
 
-#uid-input {
+#uname-input {
     outline: none;
     outline-style: none;
     border-top: none;
@@ -68,11 +68,11 @@ body {
     font-size: 18px;
 }
 
-#uid-input:focus {
+#uname-input:focus {
     border-bottom: solid rgb(103, 171, 255) 1px;
 }
 
-#uid-input::placeholder {
+#uname-input::placeholder {
     color: rgb(203, 203, 203);
 }
 
@@ -80,7 +80,7 @@ body {
     color: #6d6d6d;
 }
 
-.uid-bt {
+.uname-bt {
     color: rgb(118, 118, 118);
     cursor: pointer;
     outline: none;
@@ -90,7 +90,7 @@ body {
     transition: .3s;
 }
 
-.uid-bt:hover {
+.uname-bt:hover {
     transition: .3s;
     color: rgb(38, 123, 227);
 }

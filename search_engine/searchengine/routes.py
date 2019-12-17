@@ -10,7 +10,7 @@ import random
 def search():
     req = request.get_json()
     print(req)
-    uid = req['uid']
+    uname = req['uname']
     results = model.query(req['query'], 10)
 
     # prepare a res list
@@ -33,30 +33,32 @@ def search():
 def rel_selection_log():
     req = request.get_json()
     pid = req['pid']
-    uid = req['uid']
+    uname = req['uname']
     query = req['query']
     rel = req['rel']
 
-    print("==== [REL SEL EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [REL] - {}".format(uid, query, pid, rel))
+    print("==== [REL SEL EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [REL] - {}".format(uname, query, pid, rel))
     return "Logged", 200
 
 @app.route("/link-click", methods=["POST"])
 def link_click_log():
     req = request.get_json()
     pid = req['pid']
-    uid = req['uid']
+    uname = req['uname']
     query = req['query']
-    time = req['time']
+    duration = req['duration']
 
-    print("==== [CLICK EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [TIME] - {}s".format(uid, query, pid, time))
+    uid = db_controller.get_user_id(uname)
+    db_controller.record_user_click(uid, pid, query, duration)
+    print("==== [CLICK EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [DURATION] - {}s".format(uname, query, pid, duration))
     return "Logged", 200
 
 @app.route("/login", methods=["POST"])
 def log_in():
     req = request.get_json()
-    u_name = req['uid']
-    db_controller.add_user(u_name)
-    print("==== [LOG IN EVENT] ====\n  [USER] - {}".format(u_name))
+    uname = req['uname']
+    db_controller.add_user(uname)
+    print("==== [LOG IN EVENT] ====\n  [USER] - {}".format(uname))
     return "Logged in", 200
 
 @app.route("/")

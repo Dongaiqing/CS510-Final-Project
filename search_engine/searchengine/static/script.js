@@ -4,7 +4,7 @@ const URL = "http://127.0.0.1:5000/";
 
 const doSearch = function() {
 	$(".results-wrapper").empty();
-	const uid = localStorage.getItem("uid");
+	const uname = localStorage.getItem("uname");
 	query = $(".input-box").val();
 	if (query.length !== 0) {
 		$.ajax({
@@ -12,7 +12,7 @@ const doSearch = function() {
 			url: URL + "search",
 			data: JSON.stringify({
 				query: query,
-				uid: uid === null ? "" : uid
+				uname: uname === null ? "" : uname
 			}),
 			contentType: "application/json; charset=utf-8",
 			success: function(res) {
@@ -57,7 +57,7 @@ $(".results-wrapper").on("click", "a", function(e) {
 	localStorage.setItem("starttime", new Date().getTime());
 
 	const pid = e.target.id;
-	const uid = localStorage.getItem("uid");
+	const uname = localStorage.getItem("uname");
 	const paperBaseUrl = "https://www.aclweb.org/anthology/";
 	const pdfUrl = `${paperBaseUrl}${pid}.pdf`;
 	let pdfPreviewDiv = `
@@ -81,8 +81,8 @@ $(".results-wrapper").on("click", "a", function(e) {
 			data: JSON.stringify({
 				query: query,
 				pid: pid,
-				uid: uid === null ? "" : uid,
-				time: (end - start) / 1000
+				uname: uname === null ? "" : uname,
+				duration: (end - start) / 1000
 			})
 		});
 	});
@@ -90,7 +90,7 @@ $(".results-wrapper").on("click", "a", function(e) {
 
 // log relevance selections
 $(document).on("change", 'input[type="radio"]', e => {
-	const uid = localStorage.getItem("uid");
+	const uname = localStorage.getItem("uname");
 	$.ajax({
 		type: "POST",
 		url: URL + "relevance-selection",
@@ -99,7 +99,7 @@ $(document).on("change", 'input[type="radio"]', e => {
 			query: query,
 			pid: e.target.value,
 			rel: e.target.id.split("_")[0] === "rel" ? 1 : 0,
-			uid: uid === null ? "" : uid
+			uname: uname === null ? "" : uname
 		})
 	});
 });
@@ -116,50 +116,50 @@ $(".search-button").on("click", () => {
 	doSearch();
 });
 
-$("#uid-submission-bt").on("click", () => {
-	setUid();
+$("#uname-submission-bt").on("click", () => {
+	setUname();
 });
 
-$("#uid-input").on("keyup", e => {
+$("#uname-input").on("keyup", e => {
 	if (e.keyCode === 13) {
-		setUid();
+		setUname();
 	}
 });
 
 $("#log-out-button").on("click", () => {
-	localStorage.removeItem("uid");
-	$("#uid-input").val("");
-	displayUid();
+	localStorage.removeItem("uname");
+	$("#uname-input").val("");
+	displayUname();
 });
 
-const displayUid = () => {
-	let uid = localStorage.getItem("uid");
-	console.log("UID: " + uid);
-	if (uid !== null) {
-		$("#uid-input-wrapper").css("display", "none");
+const displayUname = () => {
+	let uname = localStorage.getItem("uname");
+	console.log("UNAME: " + uname);
+	if (uname !== null) {
+		$("#uname-input-wrapper").css("display", "none");
 		$("#log-out-wrapper").css("display", "flex");
-		$(".uid-p").text(uid);
+		$(".uname-p").text(uname);
 	} else {
 		$("#log-out-wrapper").css("display", "none");
-		$("#uid-input-wrapper").css("display", "flex");
+		$("#uname-input-wrapper").css("display", "flex");
 	}
 };
 
-const setUid = () => {
-	let uidInput = $("#uid-input").val();
-	if (uidInput !== "") {
-		localStorage.setItem("uid", uidInput);
-		displayUid();
+const setUname = () => {
+	let unameInput = $("#uname-input").val();
+	if (unameInput !== "") {
+		localStorage.setItem("uname", unameInput);
+		displayUname();
 
 		$.ajax({
 			type: "POST",
 			url: URL + "login",
 			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify({ uid: uidInput })
+			data: JSON.stringify({ uname: unameInput })
 		});
 	}
 };
 
 $(document).ready(() => {
-	displayUid();
+	displayUname();
 });
