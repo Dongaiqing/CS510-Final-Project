@@ -3,6 +3,7 @@ import torch
 from model import EncoderRNN
 from cr_trainer import indexesFromSentence, variableFromSentence, variablesFromPair, getSentenceEmbedding
 
+
 class Embedder():
     def __init__(self):
         self.embedding_path = "../train_data/Academic_papers/pickles/word_embeddings.pickle"
@@ -20,7 +21,11 @@ class Embedder():
         input_variable = variableFromSentence(self.word_index, text)
         input_variable = getSentenceEmbedding(input_variable, self.embedding_map)
         input_variable = [torch.from_numpy(input_variable[i]).float() for i in range(len(input_variable))]
-        assert(len(input_variable) > 0) # the input content might not contain any word in dictionary
+        try:
+            assert(len(input_variable) > 0) # the input content might not contain any word in dictionary
+        except:
+            print(text)
+            exit()
         input_length = len(input_variable)
         encoder_output = []
         encoder_hidden = self.encoder.initHidden()
@@ -29,6 +34,6 @@ class Embedder():
             encoder_output, encoder_hidden = self.encoder(
                 input_variable[ei], encoder_hidden)
 
-        return encoder_output
+        return encoder_output.data.numpy()
         
         

@@ -11,7 +11,7 @@ from torch import optim, nn
 import random
 import math 
 
-embedding_path = "../train_data/Academic_papers/pickles/word_embeddings.pickle"
+embedding_path = "pickles/word_embeddings.pickle"
 parameter_path = "model_parameters/crmodel.pt"
 
 def asMinutes(s):
@@ -29,11 +29,10 @@ def timeSince(since, percent):
 def indexesFromSentence(word_dict, sentence):
     res = [] 
     for word in sentence.split(' '):
-        if word.isalnum():
-            if word not in word_dict:
-                res.append(1)
-            else:
-                res.append(word_dict[word])
+        if word not in word_dict:
+            res.append(1)
+        else:
+            res.append(word_dict[word])
     return res
 
 def variableFromSentence(word_dict, sentence):
