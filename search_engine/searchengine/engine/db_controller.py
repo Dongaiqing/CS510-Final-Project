@@ -32,8 +32,8 @@ class DBController:
 
     def record_user_rel_sel(self, uid, pid, qry, rel):
         rel = "TRUE" if rel == 1 else "FALSE"
-        insert_sql = "INSERT INTO rel_sels VALUES ({}, '{}', '{}', {})".format(
-            uid, pid, qry, rel)
+        insert_sql = "INSERT INTO rel_sels VALUES ({}, '{}', '{}', {}) ON DUPLICATE KEY UPDATE relevant = {}".format(
+            uid, pid, qry, rel, rel)
         cursor = self.__mysql.connection.cursor()
         cursor.execute(insert_sql)
         self.__mysql.connection.commit()
