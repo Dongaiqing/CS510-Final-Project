@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS user_clicks (
   CONSTRAINT fk_uid FOREIGN KEY (u_id) REFERENCES users (u_id)
 );
 
-CREATE TABLE IF NOT EXISTS ref_sels (
+CREATE TABLE IF NOT EXISTS rel_sels (
   u_id INT,
   p_id VARCHAR (50),
   qry VARCHAR (255),

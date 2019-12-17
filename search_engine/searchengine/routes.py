@@ -37,6 +37,8 @@ def rel_selection_log():
     query = req['query']
     rel = req['rel']
 
+    uid = db_controller.get_user_id(uname)
+    db_controller.record_user_rel_sel(uid, pid, query, rel) 
     print("==== [REL SEL EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [REL] - {}".format(uname, query, pid, rel))
     return "Logged", 200
 
