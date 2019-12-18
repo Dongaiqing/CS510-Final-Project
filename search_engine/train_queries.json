@@ -1,0 +1,80 @@
+{"qid": "0", "ana": {"/m/0h1fn8h": 1}, "query": "deep learning"}
+{"qid": "1", "ana": {"/m/0280z8": 1}, "query": "artificial intelligence"}
+{"qid": "2", "ana": {"/m/01hyh_": 1}, "query": "machine learning"}
+{"qid": "3", "ana": {"/m/01_bbm": 1}, "query": "question answering"}
+{"qid": "4", "ana": {"/m/0h93x": 1}, "query": "noun phrases"}
+{"qid": "5", "ana": {"/m/017b3j": 1}, "query": "penn treebank"}
+{"qid": "6", "ana": {"/m/049w3z8": 1}, "query": "speech recognition"}
+{"qid": "7", "ana": {"/m/01hyh_": 1}, "query": "data mining"}
+{"qid": "8", "ana": {"/m/01xzx": 1}, "query": "computer vision"}
+{"qid": "9", "ana": {"/m/0hjlw": 1}, "query": "reinforcement learning"}
+{"qid": "10", "ana": {"/m/059nn": 1}, "query": "natural language"}
+{"qid": "11", "ana": {"/m/0_lm0yb": 1}, "query": "ontology"}
+{"qid": "12", "ana": {"/m/01pf4l": 1}, "query": "sap"}
+{"qid": "13", "ana": {"/m/02qmzyq": 1}, "query": "lstm"}
+{"qid": "14", "ana": {"/m/05flf": 1}, "query": "natural language processing"}
+{"qid": "15", "ana": {"/m/076k0": 1}, "query": "semantic web"}
+{"qid": "16", "ana": {"/m/0gyvy46": 1}, "query": "mooc"}
+{"qid": "17", "ana": {"/m/03j0x": 1}, "query": "human computer interaction"}
+{"qid": "18", "ana": {"/m/064dh3": 1, "/m/031f5p": 1}, "query": "eye movement clustering"}
+{"qid": "19", "ana": {"/m/07pr575": 1}, "query": "semantic relations"}
+{"qid": "20", "ana": {"/m/0fsz7r": 1, "/m/064r8p6": 1, "/m/015xs6": 1, "/m/0176ty": 1, "/m/07yl0": 1}, "query": "efficient estimation of word representations in vector space"}
+{"qid": "21", "ana": {"/m/0bs2j8q": 1}, "query": "big data"}
+{"qid": "22", "ana": {"/m/05dhw": 1}, "query": "neural network"}
+{"qid": "23", "ana": {"/m/0262_1n": 1, "/m/01rl3g": 1}, "query": "generalized extreme value"}
+{"qid": "24", "ana": {"/m/02s06c": 1, "/m/02sp_v": 1, "/m/0cm90cn": 1}, "query": "image panorama video"}
+{"qid": "25", "ana": {"/m/0jt3_q3": 1}, "query": "data science"}
+{"qid": "26", "ana": {"/m/0h0v_v": 1, "/m/05m9sn3": 1}, "query": "semantic parsing"}
+{"qid": "27", "ana": {"/m/07q284m": 1, "/m/01rkh6l": 1}, "query": "imbalanced data"}
+{"qid": "28", "ana": {"/m/02ttd9": 1}, "query": "recommender system"}
+{"qid": "29", "ana": {"/m/06w4gkl": 1, "/m/01q0j8": 1, "/m/0hjlw": 1}, "query": "inverse reinforcement learning mixture"}
+{"qid": "30", "ana": {"/m/0b6vrv": 1}, "query": "transfer learning"}
+{"qid": "31", "ana": {"/m/0gsgr": 1}, "query": "cnn"}
+{"qid": "32", "ana": {"/m/02jj2w": 1, "/m/06g1vhm": 1}, "query": "dynamic programming segmentation"}
+{"qid": "33", "ana": {"/m/04gk4ls": 1}, "query": "natural language interface"}
+{"qid": "34", "ana": {"/m/0mkz": 1}, "query": "genetic algorithm"}
+{"qid": "35", "ana": {"/m/01m3jv2": 1, "/m/01klyk": 1}, "query": "contact prediction"}
+{"qid": "36", "ana": {"/m/01hyh_": 1}, "query": "nsdi machine learning"}
+{"qid": "37", "ana": {"/m/01hyh_": 1, "/m/02wxbd": 1}, "query": "forensics and machine learning"}
+{"qid": "38", "ana": {"/m/0fskw9h": 1, "/m/03rpcz": 1}, "query": "words to speech"}
+{"qid": "39", "ana": {"/m/06kwlsy": 1}, "query": "information theory"}
+{"qid": "40", "ana": {"/m/025rqlz": 2}, "query": "morphology morphological"}
+{"qid": "41", "ana": {"/m/0cgts80": 1}, "query": "graph theory"}
+{"qid": "42", "ana": {"/m/0ktnkmc": 1, "/m/02ph2": 1}, "query": "exploit vulnerability"}
+{"qid": "43", "ana": {"/m/020mfr": 1, "/m/0hjlw": 1}, "query": "reinforcement learning and video game"}
+{"qid": "44", "ana": {"/m/05gl9f": 1, "/m/073ns": 1}, "query": "system health management"}
+{"qid": "45", "ana": {"/m/0bstfx": 1, "/m/0355y7": 1}, "query": "service composition"}
+{"qid": "46", "ana": {"/m/01j4bc": 1}, "query": "mobile payment"}
+{"qid": "47", "ana": {"/m/0fswxg": 1, "/m/0jl8r": 1}, "query": "softmax categorization"}
+{"qid": "48", "ana": {"/m/068jsn": 1, "/m/0168hv": 1}, "query": "cost aggregation"}
+{"qid": "49", "ana": {"/m/01lm9y": 1}, "query": "chinese dialect"}
+{"qid": "50", "ana": {"/m/0f_14n_": 1, "/m/04wn_3": 1}, "query": "depth camera"}
+{"qid": "51", "ana": {"/m/03yqv": 1, "/m/02fkdb": 1}, "query": "mobile tcp traffic analysis"}
+{"qid": "52", "ana": {"/m/0nfwmd0": 1, "/m/03wtp3": 1}, "query": "collective learning"}
+{"qid": "53", "ana": {"/m/026x2jj": 1, "/m/0h3wrl9": 1}, "query": "robust production planning"}
+{"qid": "54", "ana": {"/m/010gpp": 1}, "query": "memory hierarchy"}
+{"qid": "55", "ana": {"/m/0pqwt": 1}, "query": "hashing"}
+{"qid": "56", "ana": {"/m/0b2g1h": 1, "/m/0gw___t": 1}, "query": "comparable corpora"}
+{"qid": "57", "ana": {"/m/0jwvf5b": 1}, "query": "knowledge graph"}
+{"qid": "58", "ana": {"/m/083br0": 1}, "query": "social media"}
+{"qid": "59", "ana": {"/m/02_myr": 1, "/m/0h1fn8h": 1}, "query": "deep learning surveillance"}
+{"qid": "60", "ana": {"/m/0kynl67": 1, "/m/0hjlw": 1}, "query": "deep reinforcement learning"}
+{"qid": "61", "ana": {"/m/06zsn1v": 1, "/m/017xbml": 1}, "query": "varying weight grasp"}
+{"qid": "62", "ana": {"/m/026_nb5": 1}, "query": "dirichlet process"}
+{"qid": "63", "ana": {"/m/0fsz7r": 1, "/m/0n5xp": 1}, "query": "word embedding"}
+{"qid": "64", "ana": {"/m/0105ntqp": 1}, "query": "robust principal component analysis"}
+{"qid": "65", "ana": {"/m/08thrh": 1}, "query": "differential evolution"}
+{"qid": "66", "ana": {}, "query": "seq2seq"}
+{"qid": "67", "ana": {"/m/02xntw": 1, "/m/0dvj7tx": 1, "/m/0260j49": 1}, "query": "document logical structure"}
+{"qid": "68", "ana": {"/m/0k0r5h1": 1}, "query": "variable neighborhood search"}
+{"qid": "69", "ana": {"/m/0c3qfnq": 1, "/m/03p39fw": 1}, "query": "urban public transportation systems"}
+{"qid": "70", "ana": {"/m/0j9kbbz": 1, "/m/0jt8j1b": 1}, "query": "edx coursera"}
+{"qid": "71", "ana": {"/m/080955": 1, "/m/02q7z": 1}, "query": "cryptography key management"}
+{"qid": "72", "ana": {"/m/0_lm0yb": 1, "/m/01jnzj": 1}, "query": "ontology construction"}
+{"qid": "73", "ana": {"/m/02prgkk": 1}, "query": "go game"}
+{"qid": "74", "ana": {"/m/02p3bs5": 1, "/m/03wtp3": 1}, "query": "sparse learning"}
+{"qid": "75", "ana": {"/m/02r05_z": 1, "/m/01ht9r": 1}, "query": "directed hypergraph"}
+{"qid": "76", "ana": {"/m/018y_6": 1}, "query": "inventory management"}
+{"qid": "77", "ana": {"/m/03yb8hb": 1}, "query": "clojure"}
+{"qid": "78", "ana": {"/m/0_lm0yb": 1, "/m/076k0": 1}, "query": "ontology semantic web"}
+{"qid": "79", "ana": {"/m/0b6xt": 1, "/m/05dhw": 1, "/m/024hw2": 1}, "query": "convolutional neural network time series"}

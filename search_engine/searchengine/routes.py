@@ -2,7 +2,6 @@ from flask import render_template, request, Response
 import json
 
 from searchengine import app
-from searchengine import model
 from searchengine import db_controller
 import random
 
@@ -11,7 +10,11 @@ def search():
     req = request.get_json()
     print(req)
     uname = req['uname']
-    results = model.query(req['query'], 10)
+    query = req['query']
+    uid = str(db_controller.get_user_id(uname))
+    model = app.config['MODEL']
+    recommend = app.config['REC_FUNCTION']
+    results = recommend(10, model, query, uid, "data/grobid_data.pkl")
 
     # prepare a res list
     titles = []
