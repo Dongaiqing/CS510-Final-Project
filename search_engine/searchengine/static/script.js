@@ -6,7 +6,9 @@ const doSearch = function() {
 	$(".results-wrapper").empty();
 	const uname = localStorage.getItem("uname");
 	query = $(".input-box").val();
+	
 	if (query.length !== 0) {
+		$(".waiting-result-wrapper").css("display", "flex");
 		$.ajax({
 			type: "POST",
 			url: URL + "search",
@@ -16,6 +18,7 @@ const doSearch = function() {
 			}),
 			contentType: "application/json; charset=utf-8",
 			success: function(res) {
+				$(".waiting-result-wrapper").css("display", "none");
 				var num = Math.min(res.titles.length, 10);
 				//TODO: # documents less than 10
 				if (num === 0) {

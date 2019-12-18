@@ -22,7 +22,7 @@ def search():
     ids = []
 
     for i in range(len(results)):
-        titles.append(results[i][0])
+        titles.append(results[i][0].title())
         abstracts.append(results[i][1])
         ids.append(results[i][2])
 
