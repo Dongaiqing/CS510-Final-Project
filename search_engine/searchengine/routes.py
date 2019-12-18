@@ -42,6 +42,9 @@ def rel_selection_log():
 
     uid = db_controller.get_user_id(uname)
     db_controller.record_user_rel_sel(uid, pid, query, rel) 
+    record = app.config['RECORD_FUNCTION']
+    record(str(uid), [pid], query, [db_controller.get_user_rel_scores(uid, query, pid=pid)])
+
     print("==== [REL SEL EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [REL] - {}".format(uname, query, pid, rel))
     return "Logged", 200
 
@@ -55,6 +58,9 @@ def link_click_log():
 
     uid = db_controller.get_user_id(uname)
     db_controller.record_user_click(uid, pid, query, duration)
+    record = app.config['RECORD_FUNCTION']
+    record(str(uid), [pid], query, [db_controller.get_user_rel_scores(uid, query, pid=pid)])
+
     print("==== [CLICK EVENT] ====\n  [USER] - {}\n  [QUERY] - {}\n  [PAPER] - {}\n  [DURATION] - {}s".format(uname, query, pid, duration))
     return "Logged", 200
 
