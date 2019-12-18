@@ -7,7 +7,9 @@ const doSearch = function() {
 	const uname = localStorage.getItem("uname");
 	query = $(".input-box").val();
 	
-	if (query.length !== 0) {
+	if (uname === null) {
+		showToast("Please log in before searching")
+	} else if (query.length !== 0) {
 		$(".waiting-result-wrapper").css("display", "flex");
 		$.ajax({
 			type: "POST",
@@ -151,17 +153,31 @@ const displayUname = () => {
 const setUname = () => {
 	let unameInput = $("#uname-input").val();
 	if (unameInput !== "") {
-		localStorage.setItem("uname", unameInput);
-		displayUname();
-
 		$.ajax({
 			type: "POST",
 			url: URL + "login",
 			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify({ uname: unameInput })
+			data: JSON.stringify({ uname: unameInput }),
+			statusCode: {
+				200: () => {
+					localStorage.setItem("uname", unameInput);
+					displayUname();
+				},
+				403: () => {
+					showToast("Exceeded maximum number of users allowed.")
+				}
+			}
 		});
 	}
 };
+
+const showToast = (text) => {
+	$("#toast").text(text);
+	$("#toast").toggleClass(' show');
+	setTimeout(() => {
+		$("#toast").toggleClass('show ');
+	}, 3000);
+}
 
 $(document).ready(() => {
 	displayUname();

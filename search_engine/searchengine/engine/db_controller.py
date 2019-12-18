@@ -16,6 +16,15 @@ class DBController:
             cursor.execute(insert_sql)
             self.__mysql.connection.commit()
     
+    def check_if_user_full(self, threshold):
+        fetch_sql = "SELECT count(u_id) FROM users"
+        cursor = self.__mysql.connection.cursor()
+        cursor.execute(fetch_sql)
+        data = cursor.fetchone()
+
+        if data is not None:
+            return True if data[0] >= threshold else False
+
     def get_user_id(self, uname):
         fetch_sql = "SELECT * FROM users WHERE u_name = '{}'".format(uname)
         cursor = self.__mysql.connection.cursor()

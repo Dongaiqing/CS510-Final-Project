@@ -68,6 +68,16 @@ def link_click_log():
 def log_in():
     req = request.get_json()
     uname = req['uname']
+
+    uid = db_controller.get_user_id(uname)
+    user_exist = True if uid is not None else False
+    is_full = False
+
+    if not user_exist:
+        is_full = db_controller.check_if_user_full(20)
+        if is_full:
+            return "Exceeded maximum user: 20", 403
+
     db_controller.add_user(uname)
     print("==== [LOG IN EVENT] ====\n  [USER] - {}".format(uname))
     return "Logged in", 200

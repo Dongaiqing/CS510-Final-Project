@@ -1,322 +1,392 @@
 /* fix for checkbox not working properly in Safari */
 @-webkit-keyframes bugfix {
-  from { padding: 0; }
-  to { padding: 0; }
+	from {
+		padding: 0;
+	}
+	to {
+		padding: 0;
+	}
 }
 
 body {
-    font-family: 'Heebo', sans-serif;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    flex-direction: column;
-    -webkit-animation: bugfix infinite 1s;
+	font-family: "Heebo", sans-serif;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin: 0;
+	flex-direction: column;
+	-webkit-animation: bugfix infinite 1s;
 }
 
 .pdf-overlay {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.9); 
-    overflow-x: hidden; 
-  }
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	overflow-x: hidden;
+}
 
-  .pdf-close-bt {
-    position: fixed;
-    left: 50px;
-    top: 55px;
-    font-size: 40px;
-    transition: .2s;
-  }
+.pdf-close-bt {
+	position: fixed;
+	left: 50px;
+	top: 55px;
+	font-size: 40px;
+	transition: 0.2s;
+}
 
-  .pdf-close-bt:hover {
-      cursor: pointer;
-      color: rgb(103, 171, 255);
-  }
+.pdf-close-bt:hover {
+	cursor: pointer;
+	color: rgb(103, 171, 255);
+}
 
 .uname-wrapper {
-    margin: 20px;
-    padding-right: 100px;
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    align-items: center;
+	margin: 20px;
+	padding-right: 100px;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 .uname-box {
-    font-size: 18px;
-    align-items: center;
+	font-size: 18px;
+	align-items: center;
 }
 
 .uname-p {
-    margin: 0px 5px 0px 10px;
-    padding: 0;
-    color: rgb(118, 118, 118);
+	margin: 0px 5px 0px 10px;
+	padding: 0;
+	color: rgb(118, 118, 118);
 }
 
 #uname-input {
-    outline: none;
-    outline-style: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: solid #b4b4b4 1px;
-    font-size: 18px;
+	outline: none;
+	outline-style: none;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: solid #b4b4b4 1px;
+	font-size: 18px;
 }
 
 #uname-input:focus {
-    border-bottom: solid rgb(103, 171, 255) 1px;
+	border-bottom: solid rgb(103, 171, 255) 1px;
 }
 
 #uname-input::placeholder {
-    color: rgb(203, 203, 203);
+	color: rgb(203, 203, 203);
 }
 
 #usr-avatar {
-    color: #6d6d6d;
+	color: #6d6d6d;
 }
 
 .uname-bt {
-    color: rgb(118, 118, 118);
-    cursor: pointer;
-    outline: none;
-    border: none;
-    padding: 5px;
-    margin-left: 10px;
-    transition: .3s;
+	color: rgb(118, 118, 118);
+	cursor: pointer;
+	outline: none;
+	border: none;
+	padding: 5px;
+	margin-left: 10px;
+	transition: 0.3s;
 }
 
 .uname-bt:hover {
-    transition: .3s;
-    color: rgb(38, 123, 227);
+	transition: 0.3s;
+	color: rgb(38, 123, 227);
 }
 
 .title {
-    font-size: 45px;
-    color: rgb(118, 118, 118);
-    margin: 40px;
+	font-size: 45px;
+	color: rgb(118, 118, 118);
+	margin: 40px;
 }
 
 .input-wrapper {
-    width: 80%;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+	width: 80%;
+	height: 45px;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
 }
 
 .input-box {
-    flex-grow: 10;
-    box-sizing:border-box;
-    font-size: 22px;
-    margin: 0;
-    padding-left: 12px;
+	flex-grow: 10;
+	box-sizing: border-box;
+	font-size: 22px;
+	margin: 0;
+	padding-left: 12px;
 }
 
 .input-box::placeholder {
-    color: rgb(203, 203, 203);
+	color: rgb(203, 203, 203);
 }
 
 .input-box:focus {
-    outline: 1px solid rgb(103, 171, 255);
+	outline: 1px solid rgb(103, 171, 255);
 }
 
 .search-button {
-    width: 45px;
-    height: 45px;
-    flex-grow: 1;
-    background-color: rgb(41, 136, 250);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border: none;
-    padding: 5px;
-    transition: .3s;
+	width: 45px;
+	height: 45px;
+	flex-grow: 1;
+	background-color: rgb(41, 136, 250);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+	border: none;
+	padding: 5px;
+	transition: 0.3s;
 }
 
 .search-button svg {
-    width: 100%;
-    height: 100%;
-    fill: white;
+	width: 100%;
+	height: 100%;
+	fill: white;
 }
 
 .search-button:hover {
-    transition: .3s;
-    background-color: rgb(38, 123, 227);
+	transition: 0.3s;
+	background-color: rgb(38, 123, 227);
 }
 
 .no-result-wrapper {
-    width: 80%;
-    margin: 50px 0 50px 0;
-    display: flex;
-    align-items: center;
-    display: none;
+	width: 80%;
+	margin: 50px 0 50px 0;
+	display: flex;
+	align-items: center;
+	display: none;
 }
 
 .waiting-result-wrapper {
-    width: 80%;
-    flex-direction: column;
-    margin: 50px 0 50px 0;
-    display: flex;
-    align-items: center;
-    display: none;
-    color: rgb(164, 164, 164);
+	width: 80%;
+	flex-direction: column;
+	margin: 50px 0 50px 0;
+	display: flex;
+	align-items: center;
+	display: none;
+	color: rgb(164, 164, 164);
 }
 
 .no-result-prompt {
-    color: rgb(164, 164, 164);
-    font-size: 25px;
-    margin: 0px;
+	color: rgb(164, 164, 164);
+	font-size: 25px;
+	margin: 0px;
 }
 
 .results-wrapper {
-    width: 80%;
-    margin-bottom: 70px;
+	width: 80%;
+	margin-bottom: 70px;
 }
 
 .single-result-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 40px;
 }
 
 .result-contents-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 }
 
 .relevance-control-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    color: rgb(215, 215, 215);;
-    margin-right: 40px;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 40px;
+	color: rgb(215, 215, 215);
+	margin-right: 40px;
+	height: 100%;
 }
 
 .radio-label {
-    transition: .2s;
-    height: auto;
-    display: contents;
+	transition: 0.2s;
+	height: auto;
+	display: contents;
 }
 
 .radio-label:hover {
-    cursor: pointer;
-    transition: .2s;
+	cursor: pointer;
+	transition: 0.2s;
 }
 
 .radio-label-rel:hover {
-    color: rgb(151, 196, 151);
+	color: rgb(151, 196, 151);
 }
 
 .radio-label-irrel:hover {
-    color: rgb(210, 131, 131);
+	color: rgb(210, 131, 131);
 }
 
 .relevance-control-wrapper input {
-    display: contents;
+	display: contents;
 }
 
 .relevance-radio:checked + .radio-label-rel {
-    color: rgb(151, 196, 151);
+	color: rgb(151, 196, 151);
 }
 
 .relevance-radio:checked + .radio-label-irrel {
-    color: rgb(210, 131, 131);
+	color: rgb(210, 131, 131);
 }
 
 .result-title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    font-size: 22px;
-    text-decoration: none;
-    overflow: hidden;
-    color: rgb(63, 131, 215);
-    transition: .2s;
-    -webkit-line-clamp: 2;
-    text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	font-size: 22px;
+	text-decoration: none;
+	overflow: hidden;
+	color: rgb(63, 131, 215);
+	transition: 0.2s;
+	-webkit-line-clamp: 2;
+	text-overflow: ellipsis;
 }
 
 .result-title:hover {
-    color: rgb(31, 92, 167);
-    text-decoration: underline;
-    cursor: pointer;
-    transition: .2s;
+	color: rgb(31, 92, 167);
+	text-decoration: underline;
+	cursor: pointer;
+	transition: 0.2s;
 }
 
 .result-authors {
-    font-size: 20px;
-    margin: 5px 0 5px 0;
-    color: rgb(86, 148, 103)
+	font-size: 20px;
+	margin: 5px 0 5px 0;
+	color: rgb(86, 148, 103);
 }
 
 .result-abstract {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 18px;
-    margin: 5px 0 5px 0;
-    -webkit-line-clamp: 5;
-    text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	font-size: 18px;
+	margin: 5px 0 5px 0;
+	-webkit-line-clamp: 5;
+	text-overflow: ellipsis;
 }
 
 .emphasis {
-    display: inline;
-    color: rgb(210, 86, 86);
+	display: inline;
+	color: rgb(210, 86, 86);
+}
+
+#toast {
+	visibility: hidden;
+	min-width: 250px;
+	margin-left: -125px;
+	background-color: #cb4848;
+	color: #fff;
+	text-align: center;
+	border-radius: 10px;
+	padding: 16px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	top: 30px;
+	font-size: 20px;
+}
+
+#toast.show {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+	from {
+		top: 0;
+		opacity: 0;
+	}
+	to {
+		top: 30px;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		top: 0;
+		opacity: 0;
+	}
+	to {
+		top: 30px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeout {
+	from {
+		top: 30px;
+		opacity: 1;
+	}
+	to {
+		top: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		top: 30px;
+		opacity: 1;
+	}
+	to {
+		top: 0;
+		opacity: 0;
+	}
 }
 
 @media (max-width: 700px) {
-    .title {
-        font-size: 30px;
-        color: rgb(118, 118, 118);
-        margin: 20px;
-    }
+	.title {
+		font-size: 30px;
+		color: rgb(118, 118, 118);
+		margin: 20px;
+	}
 
-    .input-wrapper {
-        width: 80%;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-    }
-    
-    .input-box {
-        flex-grow: 10;
-        box-sizing:border-box;
-        font-size: 15px;
-        margin: 0;
-        padding-left: 15px;
-    }
-    
-    .search-button {
-        width: 30px;
-        height: 30px;
-    }
+	.input-wrapper {
+		width: 80%;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+	}
 
-    .result-title {
-        font-size: 15px;
-    }
+	.input-box {
+		flex-grow: 10;
+		box-sizing: border-box;
+		font-size: 15px;
+		margin: 0;
+		padding-left: 15px;
+	}
 
-    .result-abstract {
-        font-size: 12px;
-    }
+	.search-button {
+		width: 30px;
+		height: 30px;
+	}
 
-    .single-result-wrapper {
-        margin-top: 20px;
-    }
+	.result-title {
+		font-size: 15px;
+	}
 
-    .relevance-control-wrapper {
-        font-size: 30px;
-    }
+	.result-abstract {
+		font-size: 12px;
+	}
+
+	.single-result-wrapper {
+		margin-top: 20px;
+	}
+
+	.relevance-control-wrapper {
+		font-size: 30px;
+	}
 }
