@@ -90,7 +90,6 @@ class NARModel:
                     i += 1
 
         train_labels = np.asarray(train_labels)
-        print(train_data.shape)
         return train_data, train_labels
 
     def train(self):
@@ -188,7 +187,6 @@ def recommend(top_k, clf, query, user_id, academic_data):
 
     input = input.reshape(input.shape[0], -1)
     prediction = clf.predict_proba(input)
-    print(prediction.shape)
     results = {}
     j = 0
     for key, value in a_id_to_eb.items():

@@ -75,38 +75,44 @@ $(".results-wrapper").on("click", "a", function(e) {
 		$(".pdf-overlay").css("display", "none");
 		$(".pdf-overlay").remove();
 
-		const start = localStorage.getItem("starttime");
-		const end = new Date().getTime();
-		localStorage.removeItem("starttime");
+		if (uname !== null) {
+			const start = localStorage.getItem("starttime");
+			const end = new Date().getTime();
+			localStorage.removeItem("starttime");
 
-		$.ajax({
-			type: "POST",
-			url: URL + "link-click",
-			contentType: "application/json; charset=utf-8",
-			data: JSON.stringify({
-				query: query,
-				pid: pid,
-				uname: uname === null ? "" : uname,
-				duration: (end - start) / 1000
-			})
-		});
+			$.ajax({
+				type: "POST",
+				url: URL + "link-click",
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify({
+					query: query,
+					pid: pid,
+					uname: uname === null ? "" : uname,
+					duration: (end - start) / 1000
+				})
+			});
+		} else {
+			localStorage.removeItem("starttime");
+		}
 	});
 });
 
 // log relevance selections
 $(document).on("change", 'input[type="radio"]', e => {
 	const uname = localStorage.getItem("uname");
-	$.ajax({
-		type: "POST",
-		url: URL + "relevance-selection",
-		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify({
-			query: query,
-			pid: e.target.value,
-			rel: e.target.id.split("_")[0] === "rel" ? 1 : 0,
-			uname: uname === null ? "" : uname
-		})
-	});
+	if (uname !== null) {
+		$.ajax({ 
+			type: "POST",
+			url: URL + "relevance-selection",
+			contentType: "application/json; charset=utf-8",
+			data: JSON.stringify({
+				query: query,
+				pid: e.target.value,
+				rel: e.target.id.split("_")[0] === "rel" ? 1 : 0,
+				uname: uname === null ? "" : uname
+			})
+		});
+	}
 });
 
 // search on enter press
