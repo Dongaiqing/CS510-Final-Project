@@ -1,8 +1,8 @@
+import torch
 import pickle
 import random
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
-import torch
 from embedder import Embedder
 import os
 import json
@@ -268,32 +268,3 @@ def create_NAR_model():
     clf = model.train()
 
     return clf
-
-
-# def main():
-
-#     train_data_path = ["data/academic_train_data.txt", "data/acl_train_data.txt"]
-
-#     data_len_path = "data/data_len.json"
-#     data_len = {}
-#     data_len = json.load(open(data_len_path, 'r'))
-#     article_size = data_len['article']
-#     query_size = data_len['query']
-#     num_user = data_len['user']
-#     sample_size = data_len['sample_size']
-#     model = NARModel(train_data_path,article_size,query_size, num_user, sample_size)
-#     #clf = model.train()
-
-
-#     top_k = 100
-#     query = "deep learning"
-#     user_id = '1'
-
-#     #results = recommend(top_k, clf,query, user_id)
-
-#     print(data_len['sample_size'])
-#     print(data_len['query'])
-#     print(data_len['user'])
-
-
-#     record('19', ['4c0e637fecc62b689f78af4e934bb85cdc09f048'], "love", [2])
