@@ -1,3 +1,6 @@
+## Live Demo
+http://35.171.195.172/
+
 ## Prerequisites
 - Python 3
 - Flask
@@ -13,7 +16,7 @@
 ```
 git clone https://github.com/Dongaiqing/CS510-Literature-Search-Engine.git
 ```
-2. Change your current folder to ·search_engine/·
+2. Change your current folder to `search_engine/`
 3. Run `create_schema.sql` to create needed database schema. A sample command to run the SQL script is:
 ```
 mysql -u <username> -p<password> < create_schema.sql
